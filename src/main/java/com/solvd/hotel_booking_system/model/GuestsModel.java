@@ -5,7 +5,7 @@ public class GuestsModel {
     private Long idGuests;
     private String firstName;
     private String lastName;
-    private int phoneNumber;
+    private Long phoneNumber;
     private String email;
     private String gender;
 
@@ -43,11 +43,11 @@ public class GuestsModel {
         this.lastName = lastName;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

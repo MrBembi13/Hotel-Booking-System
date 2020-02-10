@@ -4,7 +4,7 @@ public class HotelsModel {
 
     private Long idHotels;
     private String nameHotel;
-    private int phoneNumber;
+    private Long phoneNumber;
     private String emailAddress;
     private String websiteUrl;
     private Long address_id;
@@ -28,11 +28,11 @@ public class HotelsModel {
         this.nameHotel = nameHotel;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
