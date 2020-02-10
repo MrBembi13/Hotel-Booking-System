@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IBookingsDAO">
+    <resultMap id="bookings" type="com.solvd.hotel_booking_system.model.BookingsModel">
+        <id property="idBookings" column="idBookings"/>
+        <result property="guests_id" column="guests_id"/>
+        <result property="hotels_id" column="hotels_id"/>
+        <result property="dateFrom" column="dateFrom"/>
+        <result property="dateTo" column="dateTo"/>
+        <result property="rooms_id" column="rooms_id"/>
+        <result property="payments_id" column="payments_id"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="getBookingsById" parameterType="java.lang.Long">
+        select * from Bookings where idBookings = #{idBookings}
+    </select>
+    <select id="getBookingsList" resultMap="bookings">
+        select * from Bookings
+    </select>
+    <insert id="insertBookings" parameterType="com.solvd.hotel_booking_system.model.BookingsModel">
+        insert into Bookings(idBookings, guests_id, hotels_id, dateFrom, dateTo, rooms_id, payments_id, status)
+        values (#{idBookings}, #{guests_id}, #{hotels_id}, #{dateFrom}, #{dateTo}, #{rooms_id}, #{payments_id}, #{status})
+    </insert>
+    <update id="updateBookings" parameterType="com.solvd.hotel_booking_system.model.BookingsModel">
+        update Bookings
+        set guests_id = #{guests_id}, hotels_id = #{hotels_id}, dateFrom = #{dateFrom}, dateTo = #{dateTo}, rooms_id = #{rooms_id}, payments_id = #{payments_id}, status = #{status}
+        where idBookings = #{idBookings}
+    </update>
+    <delete id="deleteBookings" parameterType="com.solvd.hotel_booking_system.model.BookingsModel">
+        delete from Bookings
+        where idBookings = #{idBookings}
+    </delete>
+</mapper>

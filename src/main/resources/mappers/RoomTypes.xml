@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IRoomTypesDAO">
+    <resultMap id="roomType" type="com.solvd.hotel_booking_system.model.RoomTypesModel">
+        <id property="idRoomTypes" column="idRoomTypes"/>
+        <result property="roomType" column="roomType"/>
+        <result property="priceForNight" column="priceForNight"/>
+    </resultMap>
+    <select id="getRoomTypesById" parameterType="java.lang.Long">
+        select * from RoomTypes where idRoomTypes = #{idRoomTypes}
+    </select>
+    <select id="getRoomTypesList" resultMap="roomType">
+        select * from RoomTypes
+    </select>
+    <insert id="insertRoomTypes" parameterType="com.solvd.hotel_booking_system.model.RoomTypesModel">
+        insert into RoomTypes(idRoomTypes, roomType, priceForNight)
+        values (#{idRoomTypes}, #{roomType}, #{priceForNight})
+    </insert>
+    <update id="updateRoomTypes" parameterType="com.solvd.hotel_booking_system.model.RoomTypesModel">
+        update RoomTypes
+        set roomType = #{roomType}, priceForNight = #{priceForNight}
+        where idRoomTypes = #{idRoomTypes}
+    </update>
+    <delete id="deleteRoomTypes" parameterType="com.solvd.hotel_booking_system.model.RoomTypesModel">
+        delete from RoomTypes
+        where idRoomTypes = #{idRoomTypes}
+    </delete>
+</mapper>

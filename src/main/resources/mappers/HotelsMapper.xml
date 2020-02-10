@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IHotelsDAO">
+    <resultMap id="hotels" type="com.solvd.hotel_booking_system.model.HotelsModel">
+        <id property="idHotels" column="idHotels"/>
+        <result property="nameHotel" column="nameHotel"/>
+        <result property="phoneNumber" column="phoneNumber"/>
+        <result property="emailAddress" column="emailAddress"/>
+        <result property="websiteUrl" column="websiteUrl"/>
+        <result property="address_id" column="address_id"/>
+    </resultMap>
+    <select id="getHotelsById" parameterType="java.lang.Long">
+        select * from Hotels where idHotels = #{idHotels}
+    </select>
+    <select id="getHotelsList" resultMap="hotels">
+        select * from Hotels
+    </select>
+    <insert id="insertHotels" parameterType="com.solvd.hotel_booking_system.model.HotelsModel">
+        insert into Hotels(idHotels, nameHotel, phoneNumber, emailAddress, websiteUrl, address_id)
+        values (#{idHotels}, #{nameHotel}, #{phoneNumber}, #{emailAddress}, #{websiteUrl}, #{address_id})
+    </insert>
+    <update id="updateHotels" parameterType="com.solvd.hotel_booking_system.model.HotelsModel">
+        update Hotels
+        set nameHotel = #{nameHotel}, phoneNumber = #{phoneNumber}, emailAddress = #{emailAddress}, websiteUrl = #{websiteUrl}, address_id = #{address_id}
+        where idHotels = #{idHotels}
+    </update>
+    <delete id="deleteHotels" parameterType="com.solvd.hotel_booking_system.model.HotelsModel">
+        delete from Hotels
+        where idHotels = #{idHotels}
+    </delete>
+</mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IAddressDAO">
+    <resultMap id="address" type="com.solvd.hotel_booking_system.model.AddressModel">
+        <id property="idAddress" column="idAddress"/>
+        <result property="country" column="country"/>
+        <result property="state" column="state"/>
+        <result property="city" column="city"/>
+        <result property="street" column="street"/>
+        <result property="building" column="building"/>
+        <result property="zipcode" column="zipcode"/>
+    </resultMap>
+    <select id="getAddressById" parameterType="java.lang.Long">
+        select * from Address where id = #{id}
+    </select>
+    <select id="getAddressList" resultMap="address">
+        select * from Address
+    </select>
+    <insert id="insertAddress" parameterType="com.solvd.hotel_booking_system.model.AddressModel">
+        insert into Address(idAddress, country, state, city, street, building, zipcode)
+        values (#{idAddress}, #{country}, #{state}, #{city}, #{street}, #{building}, #{zircode})
+    </insert>
+    <update id="updateAddress" parameterType="com.solvd.hotel_booking_system.model.AddressModel">
+        update Address
+        set country = #{country}, state = #{state}, city = #{city}, street = #{street}, building = #{building}, zipcode = #{zipcode}
+        where idAddress = #{idAddress}
+    </update>
+    <delete id="deleteAddress" parameterType="com.solvd.hotel_booking_system.model.AddressModel">
+        delete from Address
+        where idAddress = #{idAddress}
+    </delete>
+</mapper>

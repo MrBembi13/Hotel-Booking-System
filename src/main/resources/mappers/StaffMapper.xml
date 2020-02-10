@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IStaffDAO">
+    <resultMap id="staff" type="com.solvd.hotel_booking_system.model.StaffModel">
+        <id property="idStaff" column="idStaff"/>
+        <result property="firstName" column="firstName"/>
+        <result property="lastName" column="lastName"/>
+        <result property="hotels_id" column="hotels_id"/>
+        <result property="gender" column="gender"/>
+        <result property="position_id" column="position_id"/>
+    </resultMap>
+    <select id="getStaffById" parameterType="java.lang.Long">
+        select * from Staff where idStaff = #{idStaff}
+    </select>
+    <select id="getStaffList" resultMap="staff">
+        select * from Staff
+    </select>
+    <insert id="insertStaff" parameterType="com.solvd.hotel_booking_system.model.StaffModel">
+        insert into Staff(idStaff, firstName, lastName, hotels_id, gender, position_id)
+        values (#{idStaff}, #{firstName}, #{lastName}, #{hotels_id}, #{gender}, #{position_id})
+    </insert>
+    <update id="updateStaff" parameterType="com.solvd.hotel_booking_system.model.StaffModel">
+        update Staff
+        set firstName = #{firstName}, lastName = #{lastName}, hotels_id = #{hotels_id}, gender = #{gender}, position_id = #{position_id}
+        where idStaff = #{idStaff}
+    </update>
+    <delete id="deleteStaff" parameterType="com.solvd.hotel_booking_system.model.StaffModel">
+        delete from Staff
+        where idStaff = #{idStaff}
+    </delete>
+</mapper>

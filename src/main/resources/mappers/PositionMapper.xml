@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IPositionDAO">
+    <resultMap id="position" type="com.solvd.hotel_booking_system.model.PositionModel">
+        <id property="idPosition" column="idPosition"/>
+        <result property="position" column="position"/>
+        <result property="description" column="description"/>
+    </resultMap>
+    <select id="getPositionById" parameterType="java.lang.Long">
+        select * from Position where idPosition = #{idPosition}
+    </select>
+    <select id="getPositionList" resultMap="position">
+        select * from Position
+    </select>
+    <insert id="insertPosition" parameterType="com.solvd.hotel_booking_system.model.PositionModel">
+        insert into Position(idPosition, position, description)
+        values (#{idPosition}, #{position}, #{description})
+    </insert>
+    <update id="updatePosition" parameterType="com.solvd.hotel_booking_system.model.PositionModel">
+        update Position
+        set type = #{position}, description = #{description}
+        where idPosition = #{idPosition}
+    </update>
+    <delete id="deletePosition" parameterType="com.solvd.hotel_booking_system.model.PositionModel">
+        delete from Position
+        where idPosition = #{idPosition}
+    </delete>
+</mapper>

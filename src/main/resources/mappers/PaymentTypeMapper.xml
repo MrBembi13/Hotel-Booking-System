@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hotel_booking_system.dao.IPaymentTypeDAO">
+    <resultMap id="paymentType" type="com.solvd.hotel_booking_system.model.PaymentTypeModel">
+        <id property="idPaymentType" column="idPaymentType"/>
+        <result property="type" column="type"/>
+        <result property="description" column="description"/>
+    </resultMap>
+    <select id="getPaymentTypeById" parameterType="java.lang.Long">
+        select * from PaymentType where idPaymentType = #{idPaymentType}
+    </select>
+    <select id="getPaymentTypeList" resultMap="paymentType">
+        select * from PaymentType
+    </select>
+    <insert id="insertPaymentType" parameterType="com.solvd.hotel_booking_system.model.PaymentTypeModel">
+        insert into PaymentType(idPaymentType, type, description)
+        values (#{idPaymentType}, #{type}, #{description})
+    </insert>
+    <update id="updatePaymentType" parameterType="com.solvd.hotel_booking_system.model.PaymentTypeModel">
+        update PaymentType
+        set type = #{type}, description = #{description}
+        where idPaymentType = #{idPaymentType}
+    </update>
+    <delete id="deletePaymentType" parameterType="com.solvd.hotel_booking_system.model.PaymentTypeModel">
+        delete from PaymentType
+        where idPaymentType = #{idPaymentType}
+    </delete>
+</mapper>
