@@ -8,7 +8,7 @@ public class AddressModel {
     private String city;
     private String street;
     private String building;
-    private String zipcode;
+    private String zipCode;
 
     public AddressModel() {
     }
@@ -68,12 +68,12 @@ public class AddressModel {
         this.building = building;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class AddressModel {
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", building='" + building + '\'' +
-                ", zip code='" + zipcode + '\'' +
+                ", zip code='" + zipCode + '\'' +
                 '}';
     }
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 public class InfoGenerator {
 
     private static final int SEED = 100;
+    private static final int PHONE = 999999999;
     private static Random random = new Random();
 
     public static Date generateRandomDate() {
@@ -26,10 +27,9 @@ public class InfoGenerator {
 
     public static AddressModel generateAddress() {
         AddressModel addressModel = new AddressModel();
-        addressModel.setIdAddress(random.nextLong());
         addressModel.setBuilding("building" + random.nextInt(SEED));
         addressModel.setCity("city" + random.nextInt(SEED));
-        addressModel.setZipcode("zip" + random.nextInt(SEED));
+        addressModel.setZipCode("zip" + random.nextInt(SEED));
         addressModel.setCountry("country" + random.nextInt(SEED));
         addressModel.setState("state" + random.nextInt(SEED));
         addressModel.setStreet("street" + random.nextInt(SEED));
@@ -38,7 +38,6 @@ public class InfoGenerator {
 
     public static PositionModel generatePosition() {
         PositionModel positionModel = new PositionModel();
-        positionModel.setIdPosition(random.nextLong());
         positionModel.setDescription("pos_decr" + random.nextInt(SEED));
         positionModel.setPosition("position" + random.nextInt(SEED));
         return positionModel;
@@ -47,22 +46,20 @@ public class InfoGenerator {
     public static HotelsModel generateHotel(AddressModel address) {
         HotelsModel hotelsModel = new HotelsModel();
         hotelsModel.setAddress_id(address.getIdAddress());
-        hotelsModel.setIdHotels(random.nextLong());
         hotelsModel.setEmailAddress("email" + random.nextInt(SEED));
         hotelsModel.setNameHotel("hotel_name" + random.nextInt(SEED));
-        hotelsModel.setPhoneNumber(random.nextInt(999999999));
+        hotelsModel.setPhoneNumber("+380" + random.nextInt(PHONE));
         hotelsModel.setWebsiteUrl("website" + random.nextInt(SEED));
         return hotelsModel;
     }
 
     public static GuestsModel generateGuest() {
         GuestsModel guestsModel = new GuestsModel();
-        guestsModel.setIdGuests(random.nextLong());
         guestsModel.setEmail("email" + random.nextInt(SEED));
         guestsModel.setFirstName("first_name" + random.nextInt(SEED));
         guestsModel.setGender("gender" + random.nextInt(1));
         guestsModel.setLastName("last_name" + random.nextInt(SEED));
-        guestsModel.setPhoneNumber(random.nextInt(999999999));
+        guestsModel.setPhoneNumber("+380" + random.nextInt(PHONE));
         return guestsModel;
     }
 
@@ -71,7 +68,6 @@ public class InfoGenerator {
         staffModel.setHotels_id(hotel.getIdHotels());
         staffModel.setFirstName("first_name" + random.nextInt(SEED));
         staffModel.setGender("gender" + random.nextInt(1));
-        staffModel.setIdStaff(random.nextLong());
         staffModel.setLastName("last_name" + random.nextInt(SEED));
         staffModel.setPosition_id(position.getIdPosition());
         return staffModel;
@@ -79,7 +75,6 @@ public class InfoGenerator {
 
     public static RoomTypesModel generateRoomType() {
         RoomTypesModel roomTypesModel = new RoomTypesModel();
-        roomTypesModel.setIdRoomTypes(random.nextLong());
         roomTypesModel.setPriceForNight(random.nextInt());
         roomTypesModel.setRoomType("room_type" + random.nextInt(SEED));
         return roomTypesModel;
@@ -87,7 +82,6 @@ public class InfoGenerator {
 
     public static PaymentTypeModel generatePaymentType() {
         PaymentTypeModel paymentTypeModel = new PaymentTypeModel();
-        paymentTypeModel.setIdPaymentType(random.nextLong());
         paymentTypeModel.setDescription("pay_type_descr" + random.nextInt(SEED));
         paymentTypeModel.setType("pay_type" + random.nextInt(SEED));
         return paymentTypeModel;
@@ -96,7 +90,6 @@ public class InfoGenerator {
     public static PaymentsModel generatePayment(PaymentTypeModel paymentType) {
         PaymentsModel paymentsModel = new PaymentsModel();
         paymentsModel.setDate(generateRandomDate());
-        paymentsModel.setIdPayments(random.nextLong());
         paymentsModel.setPaymentNumber(random.nextInt());
         paymentsModel.setPaymentType_id(paymentType.getIdPaymentType());
         return paymentsModel;
@@ -104,7 +97,6 @@ public class InfoGenerator {
 
     public static RoomsModel generateRoom(HotelsModel hotel, RoomTypesModel roomType) {
         RoomsModel roomsModel = new RoomsModel();
-        roomsModel.setIdRooms(random.nextLong());
         roomsModel.setDescription("room_descr" + random.nextInt(SEED));
         roomsModel.setFloor(random.nextInt(SEED));
         roomsModel.setRoomNumber(random.nextInt(SEED));
