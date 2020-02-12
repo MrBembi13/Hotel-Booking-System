@@ -6,9 +6,7 @@ import com.solvd.hotel_booking_system.dao.IRoomTypesDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.AddressDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.HotelsDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.RoomTypesDAO;
-import com.solvd.hotel_booking_system.model.AddressModel;
-import com.solvd.hotel_booking_system.model.HotelsModel;
-import com.solvd.hotel_booking_system.model.RoomTypesModel;
+import com.solvd.hotel_booking_system.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -39,17 +37,16 @@ public class HotelsService {
         return null;
     }
 
-    public HotelsModel findByCity(String city) {
-        return null;
-    }
-
     public List<HotelsModel> findByParameters(AddressModel address,
                                               RoomTypesModel roomType, HotelsModel hotel) {//IF STATEMENT IN MAPPERS
-        if(address.getCity() != null && address.getStreet() == null) {
+        if(address == null) {
             //return hotelsDAO.getByParameters(String city...)
              /*return hotelsDAO.find() {
             select hotels
             join roomType on Room_types.room_type = #{roomType}
+            <if address != null>
+
+            </if>
             join address on address.city = #{address.city}
             where hotels.name = #{hotel.name}}*/
         } else {

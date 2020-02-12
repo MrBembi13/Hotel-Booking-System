@@ -20,10 +20,10 @@ public class AddressDAO implements IAddressDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressById(id);
-        } catch (Exception e){
+        } catch (Exception e) {
             LoggerUtil.LOGGER.error(e);
         } finally {
-            session.close();
+            if(session != null) session.close();
         }
         return null;
     }
