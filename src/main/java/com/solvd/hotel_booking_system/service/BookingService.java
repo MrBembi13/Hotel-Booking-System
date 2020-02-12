@@ -5,6 +5,8 @@ import com.solvd.hotel_booking_system.dao.daoClass.GuestsDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.PaymentsDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.RoomsDAO;
 import com.solvd.hotel_booking_system.model.BookingsModel;
+import com.solvd.hotel_booking_system.model.GuestsModel;
+import com.solvd.hotel_booking_system.model.RoomTypesModel;
 
 import java.util.List;
 
@@ -23,6 +25,16 @@ public class BookingService {
         return bookingsDAO.getBookingsById(id);
     }
 
+    public void saveBooking(BookingsModel booking, RoomTypesModel roomType) {
 
+    }
+
+    public List<BookingsModel> getAllBookingsForUser(GuestsModel guest) {
+        return null;
+    }
+
+    public List<BookingsModel> getBookingsByParameters(BookingsModel booking) {
+        return null;
+    }
 
 }

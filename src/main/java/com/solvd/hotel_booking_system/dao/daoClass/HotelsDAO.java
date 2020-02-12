@@ -23,7 +23,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (Exception e){
             LoggerUtil.LOGGER.error(e);
         } finally {
-            session.close();
+            if(session != null) session.close();
         }
         return null;
     }
@@ -37,7 +37,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (Exception e) {
             LoggerUtil.LOGGER.error(e);
         } finally {
-            session.close();
+            if(session != null) session.close();
         }
         return null;
     }
@@ -52,7 +52,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (Exception e) {
             LoggerUtil.LOGGER.error(e);
         } finally {
-            session.close();
+            if(session != null) session.close();
         }
     }
 
@@ -66,7 +66,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (Exception e) {
             LoggerUtil.LOGGER.error(e);
         } finally {
-            session.close();
+            if(session != null) session.close();
         }
     }
 
@@ -80,7 +80,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (Exception e) {
             LoggerUtil.LOGGER.error(e);
         } finally {
-            session.close();
+            if(session != null) session.close();
         }
     }
 }
