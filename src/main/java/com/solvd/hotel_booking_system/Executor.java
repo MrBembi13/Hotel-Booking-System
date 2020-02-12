@@ -46,7 +46,7 @@ public class Executor {
         //parse from json
         JSONUtil<RoomTypesModel> jsonUtil = new JSONUtil<>();
         RoomTypesModel roomTypesModel = new RoomTypesModel();
-        jsonUtil.fromJson(roomTypesModel,"src\\main\\resources\\json\\roomTypes.json");
+        jsonUtil.fromJson(RoomTypesModel.class,"src\\main\\resources\\json\\roomTypes.json");
 
 
        /* PojoToJson<PersonModel> pojoToJson1 = new PojoToJson<>();
