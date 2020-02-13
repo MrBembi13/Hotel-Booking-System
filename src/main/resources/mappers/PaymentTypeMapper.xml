@@ -6,7 +6,7 @@
         <result property="type" column="type"/>
         <result property="description" column="description"/>
     </resultMap>
-    <select id="getPaymentTypeById" parameterType="java.lang.Long">
+    <select id="getPaymentTypeById" parameterType="java.lang.Long" resultMap="paymentType">
         select * from PaymentType where idPaymentType = #{idPaymentType}
     </select>
     <select id="getPaymentTypeList" resultMap="paymentType">

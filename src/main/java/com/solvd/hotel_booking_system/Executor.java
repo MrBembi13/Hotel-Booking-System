@@ -6,32 +6,15 @@ import com.solvd.hotel_booking_system.util.InfoGenerator;
 import com.solvd.hotel_booking_system.util.JSONUtil;
 import com.solvd.hotel_booking_system.util.LoggerUtil;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 public class Executor {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         LoggerUtil.LOGGER.info("Starting application...");
-
-        /*GuestsModel bookingsModel;
-        GuestsDAO addressDAO = new GuestsDAO();
-        for (int i = 0; i < 10; i++) {
-            bookingsModel = InfoGenerator.generateGuest();
-            addressDAO.insertGuests(bookingsModel);
-        }*/
-        /*PositionDAO positionDAO = new PositionDAO();
-        HotelsDAO hotelsDAO = new HotelsDAO();
-        StaffDAO staffDAO = new StaffDAO();
-        PositionModel positionModel;
-        HotelsModel hotelsModel;
-        StaffModel staffModel;
-        for (int i = 1; i < 11; i++) {
-            positionModel = positionDAO.getPositionById((long) i);
-            hotelsModel = hotelsDAO.getHotelsById((long) i);
-            staffModel = InfoGenerator.generateStaff(hotelsModel, positionModel);
-            staffDAO.insertStaff(staffModel);
-        }*/
 
         //parse to json by id
         /*JSONUtil<AddressModel> jsonUtil = new JSONUtil<>();
@@ -44,15 +27,17 @@ public class Executor {
         jsonUtil.toJson(addressModelList, "src\\main\\resources\\json\\address.json");*/
 
         //parse from json
-        JSONUtil<RoomTypesModel> jsonUtil = new JSONUtil<>();
-        RoomTypesModel roomTypesModel = new RoomTypesModel();
-        jsonUtil.fromJson(roomTypesModel,"src\\main\\resources\\json\\roomTypes.json");
+        /*JSONUtil<RoomTypesModel> jsonUtil = new JSONUtil<>();
+        RoomTypesModel roomTypesModel = jsonUtil.fromJson(RoomTypesModel.class, "src\\main\\resources\\json\\roomTypes.json");
+        RoomTypesDAO roomTypesDAO = new RoomTypesDAO();
+        roomTypesDAO.insertRoomTypes(roomTypesModel);*/
 
-
-       /* PojoToJson<PersonModel> pojoToJson1 = new PojoToJson<>();
-        PersonModel customerModel = pojoToJson1.fromJson("src\\main\\resources\\json\\person.json");
-        System.out.println(customerModel);
-        PersonDAO customerDAO = new PersonDAO();
-        customerDAO.insertPerson(customerModel);*/
+        //parse from json list
+        /*JSONUtil<PaymentTypeModel> jsonUtil = new JSONUtil<>();
+        List<PaymentTypeModel> paymentTypeModelList = jsonUtil.fromJsonFile(PaymentTypeModel[].class, "src\\main\\resources\\json\\PaymentType.json");
+        PaymentTypeDAO paymentTypeDAO = new PaymentTypeDAO();
+        for (PaymentTypeModel e: paymentTypeModelList) {
+            paymentTypeDAO.insertPaymentType(e);
+        }*/
     }
 }

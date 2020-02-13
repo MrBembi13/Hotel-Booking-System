@@ -21,7 +21,6 @@ public class InfoGenerator {
         dateString.append(month+1);
         dateString.append("-");
         dateString.append(day+1);
-        System.out.println(dateString.toString());
         return Date.valueOf(dateString.toString());
     }
 
@@ -57,7 +56,7 @@ public class InfoGenerator {
         GuestsModel guestsModel = new GuestsModel();
         guestsModel.setEmail("email" + random.nextInt(SEED));
         guestsModel.setFirstName("first_name" + random.nextInt(SEED));
-        guestsModel.setGender("gender" + random.nextInt(1));
+        guestsModel.setGender("gender" + random.nextInt(2));
         guestsModel.setLastName("last_name" + random.nextInt(SEED));
         guestsModel.setPhoneNumber("+380" + random.nextInt(PHONE));
         return guestsModel;
@@ -67,7 +66,7 @@ public class InfoGenerator {
         StaffModel staffModel = new StaffModel();
         staffModel.setHotels_id(hotel.getIdHotels());
         staffModel.setFirstName("first_name" + random.nextInt(SEED));
-        staffModel.setGender("gender" + random.nextInt(1));
+        staffModel.setGender("gender" + random.nextInt(2));
         staffModel.setLastName("last_name" + random.nextInt(SEED));
         staffModel.setPosition_id(position.getIdPosition());
         return staffModel;
@@ -75,7 +74,7 @@ public class InfoGenerator {
 
     public static RoomTypesModel generateRoomType() {
         RoomTypesModel roomTypesModel = new RoomTypesModel();
-        roomTypesModel.setPriceForNight(random.nextInt());
+        roomTypesModel.setPriceForNight(random.nextInt(SEED));
         roomTypesModel.setRoomType("room_type" + random.nextInt(SEED));
         return roomTypesModel;
     }
