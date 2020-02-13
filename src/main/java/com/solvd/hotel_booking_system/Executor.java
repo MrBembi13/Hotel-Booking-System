@@ -6,10 +6,7 @@ import com.solvd.hotel_booking_system.util.InfoGenerator;
 import com.solvd.hotel_booking_system.util.JSONUtil;
 import com.solvd.hotel_booking_system.util.LoggerUtil;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Executor {
 
@@ -39,5 +36,13 @@ public class Executor {
         for (PaymentTypeModel e: paymentTypeModelList) {
             paymentTypeDAO.insertPaymentType(e);
         }*/
+
+        //HotelAddressModel hotelAddressModel = new HotelAddressModel();
+        Map<String, Object> map = new HashMap<>();
+        map.put("nameHotel", "hotel_name97");
+        map.put("city", "city55");
+        HotelsDAO hotelsDAO = new HotelsDAO();
+        List<HotelsModel> hotelAddressModel = hotelsDAO.findByParameter(map);
+        System.out.println(hotelAddressModel);
     }
 }
