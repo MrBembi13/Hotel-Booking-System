@@ -38,11 +38,11 @@ public class Executor {
         }*/
 
         //HotelAddressModel hotelAddressModel = new HotelAddressModel();
-        Map<String, Object> map = new HashMap<>();
+        /*Map<String, Object> map = new HashMap<>();
         map.put("nameHotel", "hotel_name97");
         map.put("city", "city55");
         HotelsDAO hotelsDAO = new HotelsDAO();
         List<HotelsModel> hotelAddressModel = hotelsDAO.findByParameters(map);
-        System.out.println(hotelAddressModel);
+        System.out.println(hotelAddressModel);*/
     }
 }
