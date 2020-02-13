@@ -42,7 +42,7 @@ public class Executor {
         map.put("nameHotel", "hotel_name97");
         map.put("city", "city55");
         HotelsDAO hotelsDAO = new HotelsDAO();
-        List<HotelsModel> hotelAddressModel = hotelsDAO.findByParameter(map);
+        List<HotelsModel> hotelAddressModel = hotelsDAO.findByParameters(map);
         System.out.println(hotelAddressModel);
     }
 }
