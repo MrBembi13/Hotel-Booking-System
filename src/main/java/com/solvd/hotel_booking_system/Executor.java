@@ -39,10 +39,10 @@ public class Executor {
 
         //HotelAddressModel hotelAddressModel = new HotelAddressModel();
         Map<String, Object> map = new HashMap<>();
-        //map.put("nameHotel", "hotel_name");
-        map.put("dateFrom", "2019-12-21");
-        BookingsDAO hotelsDAO = new BookingsDAO();
-        List<BookingsModel> hotelAddressModel = hotelsDAO.findByParameters(map);
+        map.put("nameHotel", "hotel_name97");
+        map.put("city", "city55");
+        HotelsDAO hotelsDAO = new HotelsDAO();
+        List<HotelsModel> hotelAddressModel = hotelsDAO.findByParameters(map);
         System.out.println(hotelAddressModel);
     }
 }
