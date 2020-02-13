@@ -14,12 +14,12 @@
         select * from Payments
     </select>
     <insert id="insertPayments" parameterType="com.solvd.hotel_booking_system.model.PaymentsModel">
-        insert into Payments(idPayments, date, paymentType_id, paymentNumber)
+        insert into Payments(idPayments, `date`, paymentType_id, paymentNumber)
         values (#{idPayments}, #{date}, #{paymentType_id}, #{paymentNumber})
     </insert>
     <update id="updatePayments" parameterType="com.solvd.hotel_booking_system.model.PaymentsModel">
         update Payments
-        set date = #{date}, paymentType_id = #{paymentType_id}, paymentNumber = #{paymentNumber}
+        set `date` = #{date}, paymentType_id = #{paymentType_id}, paymentNumber = #{paymentNumber}
         where idPayments = #{idPayments}
     </update>
     <delete id="deletePayments" parameterType="com.solvd.hotel_booking_system.model.PaymentsModel">

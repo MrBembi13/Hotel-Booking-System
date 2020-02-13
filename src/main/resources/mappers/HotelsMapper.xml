@@ -9,7 +9,7 @@
         <result property="websiteUrl" column="websiteUrl"/>
         <result property="address_id" column="address_id"/>
     </resultMap>
-    <select id="getHotelsById" parameterType="java.lang.Long">
+    <select id="getHotelsById" parameterType="java.lang.Long" resultMap="hotels">
         select * from Hotels where idHotels = #{idHotels}
     </select>
     <select id="getHotelsList" resultMap="hotels">

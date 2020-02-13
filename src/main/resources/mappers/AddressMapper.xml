@@ -8,21 +8,21 @@
         <result property="city" column="city"/>
         <result property="street" column="street"/>
         <result property="building" column="building"/>
-        <result property="zipcode" column="zipcode"/>
+        <result property="zipCode" column="zipCode"/>
     </resultMap>
-    <select id="getAddressById" parameterType="java.lang.Long">
-        select * from Address where id = #{id}
+    <select id="getAddressById" parameterType="java.lang.Long" resultMap="address">
+        select * from Address where idAddress = #{idAddress}
     </select>
     <select id="getAddressList" resultMap="address">
         select * from Address
     </select>
     <insert id="insertAddress" parameterType="com.solvd.hotel_booking_system.model.AddressModel">
-        insert into Address(idAddress, country, state, city, street, building, zipcode)
-        values (#{idAddress}, #{country}, #{state}, #{city}, #{street}, #{building}, #{zircode})
+        insert into Address(idAddress, country, state, city, street, building, zipCode)
+        values (#{idAddress}, #{country}, #{state}, #{city}, #{street}, #{building}, #{zipCode})
     </insert>
     <update id="updateAddress" parameterType="com.solvd.hotel_booking_system.model.AddressModel">
         update Address
-        set country = #{country}, state = #{state}, city = #{city}, street = #{street}, building = #{building}, zipcode = #{zipcode}
+        set country = #{country}, state = #{state}, city = #{city}, street = #{street}, building = #{building}, zipCode = #{zipCode}
         where idAddress = #{idAddress}
     </update>
     <delete id="deleteAddress" parameterType="com.solvd.hotel_booking_system.model.AddressModel">

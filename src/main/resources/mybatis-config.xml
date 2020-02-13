@@ -20,6 +20,15 @@
         </environment>
     </environments>
     <mappers>
-
+        <mapper resource="mappers/AddressMapper.xml"/>
+        <mapper resource="mappers/BookingsMapper.xml"/>
+        <mapper resource="mappers/GuestsMapper.xml"/>
+        <mapper resource="mappers/HotelsMapper.xml"/>
+        <mapper resource="mappers/PaymentsMapper.xml"/>
+        <mapper resource="mappers/PaymentTypeMapper.xml"/>
+        <mapper resource="mappers/PositionMapper.xml"/>
+        <mapper resource="mappers/RoomsMapper.xml"/>
+        <mapper resource="mappers/RoomTypesMapper.xml"/>
+        <mapper resource="mappers/StaffMapper.xml"/>
     </mappers>
 </configuration>
