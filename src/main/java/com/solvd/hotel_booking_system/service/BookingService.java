@@ -41,11 +41,11 @@ public class BookingService {
     }
 
     public List<BookingsModel> getAllBookingsForUser(GuestsModel guest) {
-        return bookingsDAO.getAllBookingsForGuest(guest);
+        return bookingsDAO.findByParameters(guest);
     }
 
     public List<BookingsModel> getBookingsByParameters(BookingsModel booking, GuestsModel guest) {
-        return bookingsDAO.getBookingsByParameters(booking.getDateFrom(), booking.getDateTo(), guest);
+        return bookingsDAO.findByParameters(booking.getDateFrom(), booking.getDateTo(), guest);
     }
 
     private boolean addBookingToDeque(BookingsModel booking) {
