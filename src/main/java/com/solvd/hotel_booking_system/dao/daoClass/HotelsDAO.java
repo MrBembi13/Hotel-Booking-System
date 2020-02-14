@@ -7,12 +7,27 @@ import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class HotelsDAO implements IHotelsDAO {
 
     private IHotelsDAO entityDAO;
     private Class<IHotelsDAO> DAOClass = IHotelsDAO.class;
     private SqlSession session;
+
+    @Override
+    public List<HotelsModel> findByParameters(Map<String, Object> map) {
+        try {
+            session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
+            entityDAO = session.getMapper(DAOClass);
+            return entityDAO.findByParameters(map);
+        } catch (Exception e) {
+            LoggerUtil.LOGGER.error(e);
+        } finally {
+            if(session != null) session.close();
+        }
+        return null;
+    }
 
     @Override
     public HotelsModel getHotelsById(Long id) {

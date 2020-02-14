@@ -9,6 +9,20 @@
         <result property="websiteUrl" column="websiteUrl"/>
         <result property="address_id" column="address_id"/>
     </resultMap>
+    <select id="findByParameters" parameterType="hashmap" resultMap="hotels">
+        select * from Hotels h
+        join Address a on h.address_id = a.idAddress
+        where 1=1
+        <if test="nameHotel != null">
+            and nameHotel = #{nameHotel}
+        </if>
+        <if test="city != null">
+            and city = #{city}
+        </if>
+        <if test="street != null">
+            and street = #{street}
+        </if>
+    </select>
     <select id="getHotelsById" parameterType="java.lang.Long" resultMap="hotels">
         select * from Hotels where idHotels = #{idHotels}
     </select>

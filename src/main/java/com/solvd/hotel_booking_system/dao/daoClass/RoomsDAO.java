@@ -1,6 +1,8 @@
 package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IRoomsDAO;
+import com.solvd.hotel_booking_system.model.HotelsModel;
+import com.solvd.hotel_booking_system.model.RoomTypesModel;
 import com.solvd.hotel_booking_system.model.RoomsModel;
 import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
@@ -13,6 +15,20 @@ public class RoomsDAO implements IRoomsDAO {
     private IRoomsDAO entityDAO;
     private Class<IRoomsDAO> DAOClass = IRoomsDAO.class;
     private SqlSession session;
+
+    @Override
+    public List<RoomsModel> getFreeRoomsForHotel(HotelsModel hotelsModel, RoomTypesModel roomTypesModel) {
+        try {
+            session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
+            entityDAO = session.getMapper(DAOClass);
+            return entityDAO.getFreeRoomsForHotel(hotelsModel, roomTypesModel);
+        } catch (Exception e){
+            LoggerUtil.LOGGER.error(e);
+        } finally {
+            if(session != null) session.close();
+        }
+        return null;
+    }
 
     @Override
     public RoomsModel getRoomsById(Long id) {

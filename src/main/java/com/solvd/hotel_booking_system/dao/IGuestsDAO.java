@@ -7,6 +7,8 @@ import java.util.List;
 public interface IGuestsDAO {
     GuestsModel getGuestsById(Long id);
 
+    GuestsModel getGuestsByPhone(String phone);
+
     List<GuestsModel> getGuestsList();
 
     void insertGuests(GuestsModel entity);
