@@ -33,10 +33,6 @@ public class HotelsService {
         return false;
     }
 
-    public HotelsModel findByAddress(AddressModel address) {
-        return null;
-    }
-
     public List<HotelsModel> findByParameters(AddressModel address,
                                               RoomTypesModel roomType, HotelsModel hotel) {//IF STATEMENT IN MAPPERS
         if(address == null) {

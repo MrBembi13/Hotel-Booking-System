@@ -59,14 +59,14 @@ public class ConsoleCommand {
                 System.exit(0);
                 break;
             }
-            case PAYMENTS: {
-                if(isValidKeys()) {
-                    PaymentsCommandImpl.doCommand(keys, this);
-                } else {
-                    System.out.println("Invalid payments command. Try help payments");
-                }
-                break;
-            }
+//            case PAYMENTS: {
+//                if(isValidKeys()) {
+//                    PaymentsCommandImpl.doCommand(keys, this);
+//                } else {
+//                    System.out.println("Invalid payments command. Try help payments");
+//                }
+//                break;
+//            }
             case BOOKINGS: {
                 if(isValidKeys()) {
                     BookingsCommandImpl.doCommand(keys, this);

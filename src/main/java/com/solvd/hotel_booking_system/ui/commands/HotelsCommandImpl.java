@@ -26,6 +26,7 @@ public class HotelsCommandImpl {
 
         if (keys.length == 0) {
             System.out.println(hotelsService.getAllHotels());
+            return;
         }
         if (isContainsKey("CITY", keys)) {
             System.out.println("Enter city:");
@@ -45,7 +46,7 @@ public class HotelsCommandImpl {
             roomType = new RoomTypesModel();
             roomType.setRoomType(scanner.nextLine());
         }
-        if (isContainsKey("SELECT", keys) && isContainsKey("STAFF", keys)) {
+        if (isContainsKey("SELECT", keys)) {
             System.out.println("Enter hotel number:");
             selectedHotel = hotelsService.findHotelById(scanner.nextLong());
             command.setHOTEL(selectedHotel);
@@ -58,7 +59,7 @@ public class HotelsCommandImpl {
             } else {
                 System.out.println("No staff in hotel.");
             }
-        } else {
+        } else if (!isContainsKey("STAFF", keys)) {
             System.out.println("No selected hotel. Try \"hotels -select\"");
         }
         System.out.println(hotelsService.findByParameters(address, roomType, hotel));

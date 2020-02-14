@@ -40,12 +40,12 @@ public class BookingsCommandImpl {
                 }
                 System.out.println("Enter room type:");
                 roomType.setRoomType(scanner.nextLine());
-                bookingService.saveBooking(booking, roomType);
+                System.out.println(bookingService.saveBooking(booking, roomType, command.getGUEST()));
                 return;
             }
         }
         if (keys.length == 0) {
-            bookingService.getAllBookingsForUser(command.getGUEST());
+            System.out.println(bookingService.getAllBookingsForUser(command.getGUEST()));
             return;
         }
         if (isContainsKey("DATE_TO", keys)) {
@@ -70,7 +70,7 @@ public class BookingsCommandImpl {
             System.out.println("Enter status:");
             booking.setStatus(scanner.nextLine());
         }
-        bookingService.getBookingsByParameters(booking);
+        System.out.println(bookingService.getBookingsByParameters(booking, command.getGUEST()));
     }
 
     public static boolean isContainsKey(String keyName, String[] keys) {
