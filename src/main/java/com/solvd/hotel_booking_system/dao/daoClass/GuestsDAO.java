@@ -15,6 +15,20 @@ public class GuestsDAO implements IGuestsDAO {
     private SqlSession session;
 
     @Override
+    public GuestsModel getGuestsByPhone(String phone) {
+        try {
+            session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
+            entityDAO = session.getMapper(DAOClass);
+            return entityDAO.getGuestsByPhone(phone);
+        } catch (Exception e){
+            LoggerUtil.LOGGER.error(e);
+        } finally {
+            if(session != null) session.close();
+        }
+        return null;
+    }
+
+    @Override
     public GuestsModel getGuestsById(Long id) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();

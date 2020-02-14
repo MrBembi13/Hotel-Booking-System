@@ -12,9 +12,9 @@
     <select id="findByParameters" parameterType="hashmap" resultMap="hotels">
         select * from Hotels h
         join Address a on h.address_id = a.idAddress
-        where
+        where 1=1
         <if test="nameHotel != null">
-            nameHotel = #{nameHotel}
+            and nameHotel = #{nameHotel}
         </if>
         <if test="city != null">
             and city = #{city}

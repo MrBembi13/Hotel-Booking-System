@@ -11,6 +11,17 @@
         <result property="payments_id" column="payments_id"/>
         <result property="status" column="status"/>
     </resultMap>
+    <select id="findByParameters" parameterType="hashmap" resultMap="bookings">
+        select * from Bookings b
+        join Guests g on b.guests_id = g.idGuests
+        where guests_id = #{guests_id}
+        <if test="dateFrom != null">
+            and dateFrom = #{dateFrom}
+        </if>
+        <if test="dateTo != null">
+            and dateTo = #{dateTo}
+        </if>
+    </select>
     <select id="getBookingsById" parameterType="java.lang.Long">
         select * from Bookings where idBookings = #{idBookings}
     </select>
