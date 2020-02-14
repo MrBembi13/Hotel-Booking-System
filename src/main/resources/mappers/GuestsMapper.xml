@@ -9,6 +9,9 @@
         <result property="email" column="email"/>
         <result property="gender" column="gender"/>
     </resultMap>
+    <select id="getGuestsByPhone" parameterType="java.lang.String">
+        select * from Guests where phoneNumber = #{phoneNumber}
+    </select>
     <select id="getGuestsById" parameterType="java.lang.Long">
         select * from Guests where idGuests = #{idGuests}
     </select>

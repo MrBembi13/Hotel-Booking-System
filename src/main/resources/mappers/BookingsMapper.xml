@@ -12,16 +12,14 @@
         <result property="status" column="status"/>
     </resultMap>
     <select id="findByParameters" parameterType="hashmap" resultMap="bookings">
-        select * from Bookings
-        where 1=1
+        select * from Bookings b
+        join Guests g on b.guests_id = g.idGuests
+        where guests_id = #{guests_id}
         <if test="dateFrom != null">
             and dateFrom = #{dateFrom}
         </if>
         <if test="dateTo != null">
             and dateTo = #{dateTo}
-        </if>
-        <if test="status != null">
-            and status = #{status}
         </if>
     </select>
     <select id="getBookingsById" parameterType="java.lang.Long">
