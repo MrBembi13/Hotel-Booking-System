@@ -1,15 +1,15 @@
 package com.solvd.hotel_booking_system.service;
 
-import com.solvd.hotel_booking_system.dao.daoClass.BookingsDAO;
-import com.solvd.hotel_booking_system.dao.daoClass.GuestsDAO;
-import com.solvd.hotel_booking_system.dao.daoClass.PaymentsDAO;
-import com.solvd.hotel_booking_system.dao.daoClass.RoomsDAO;
+import com.solvd.hotel_booking_system.dao.daoClass.*;
 import com.solvd.hotel_booking_system.model.*;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
 public class BookingService {
+
+    private static final Logger LOGGER = LogManager.getLogger(BookingService.class);
 
     private Queue<BookingsModel> bookingsModelDeque = new LinkedList<>();
 
@@ -30,7 +30,12 @@ public class BookingService {
             return null;
         } else {
             booking.setGuests_id(guest.getIdGuests());
-            List<RoomsModel> freeRooms = roomsDAO.getFreeRoomsForHotel(hotel, roomType);
+            booking.setHotels_id(hotel.getIdHotels());
+            booking.setStatus("booked");
+            Map<String, Object> paramMap = new HashMap<>();
+            paramMap.put("hotels_id", hotel.getIdHotels());
+            paramMap.put("roomType", roomType.getRoomType());
+            List<RoomsModel> freeRooms = roomsDAO.getFreeRoomsForHotel(paramMap);
             booking.setRooms_id(freeRooms.get(0).getIdRooms());
             if (addBookingToDeque(booking)) {
                 return booking;
@@ -41,11 +46,17 @@ public class BookingService {
     }
 
     public List<BookingsModel> getAllBookingsForUser(GuestsModel guest) {
-        return bookingsDAO.findByParameters(guest);
+        Map<String, Object> parametersMap = new HashMap<>();
+        parametersMap.put("guests_id", guest.getIdGuests());
+        return bookingsDAO.findByParameters(parametersMap);
     }
 
     public List<BookingsModel> getBookingsByParameters(BookingsModel booking, GuestsModel guest) {
-        return bookingsDAO.findByParameters(booking.getDateFrom(), booking.getDateTo(), guest);
+        Map<String, Object> parametersMap = new HashMap<>();
+        parametersMap.put("dateFrom", booking.getDateFrom());
+        parametersMap.put("dateTo", booking.getDateTo());
+        parametersMap.put("guest_id", guest.getIdGuests());
+        return bookingsDAO.findByParameters(parametersMap);
     }
 
     private boolean addBookingToDeque(BookingsModel booking) {
@@ -57,7 +68,7 @@ public class BookingService {
                 iterator.remove();
             }
         } catch (NoSuchElementException e) {
-            LoggerUtil.LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return status;
     }

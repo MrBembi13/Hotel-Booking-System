@@ -2,13 +2,16 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IAddressDAO;
 import com.solvd.hotel_booking_system.model.AddressModel;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class AddressDAO implements IAddressDAO {
+
+    private static final Logger LOGGER = LogManager.getLogger(AddressDAO.class);
 
     private IAddressDAO entityDAO;
     private Class<IAddressDAO> DAOClass = IAddressDAO.class;
@@ -21,7 +24,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressById(id);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -35,7 +38,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressList();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -50,7 +53,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO.insertAddress(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -64,7 +67,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO.deleteAddress(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -78,7 +81,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO.updateAddress(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }

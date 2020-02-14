@@ -1,11 +1,14 @@
 package com.solvd.hotel_booking_system.ui;
 
 import com.solvd.hotel_booking_system.ui.commands.CommandsEnum;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
 public class UserInterface {
+
+    private static final Logger LOGGER = LogManager.getLogger(UserInterface.class);
 
     private UserInterface() {
     }
@@ -13,7 +16,7 @@ public class UserInterface {
     public static void start(String[] args) {
         Scanner scanner = new Scanner(System.in);
         do {
-            System.out.print("Hotel-Booking-System>");
+            LOGGER.info("Hotel-Booking-System>");
             String input = scanner.nextLine();
             if(input.equals("")) continue;
             ConsoleCommand command = parseLineToCommand(input);
@@ -29,8 +32,8 @@ public class UserInterface {
         try {
             command.setCommand(CommandsEnum.valueOf(commandString.toUpperCase()));
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e.getMessage());
-            System.out.println("unknown command: " + "\"" + params[0] + "\"");
+            LOGGER.error(e.getMessage());
+            LOGGER.info("unknown command: " + "\"" + params[0] + "\"");
         }
         return command;
     }
