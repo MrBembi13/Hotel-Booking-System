@@ -1,16 +1,21 @@
 package com.solvd.hotel_booking_system.ui.commands;
 
+import com.solvd.hotel_booking_system.dao.daoClass.AddressDAO;
 import com.solvd.hotel_booking_system.model.*;
 import com.solvd.hotel_booking_system.service.HotelsService;
 import com.solvd.hotel_booking_system.service.StaffService;
 import com.solvd.hotel_booking_system.ui.ConsoleCommand;
 import com.solvd.hotel_booking_system.ui.keys.HotelsKeys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
 public class HotelsCommandImpl {
+
+    private static final Logger LOGGER = LogManager.getLogger(AddressDAO.class);
 
     public static void doCommand(String[] keys, ConsoleCommand command) {
 
@@ -25,44 +30,39 @@ public class HotelsCommandImpl {
         StaffService staffService = new StaffService();
 
         if (keys.length == 0) {
-            System.out.println(hotelsService.getAllHotels());
+            LOGGER.info(hotelsService.getAllHotels());
             return;
         }
         if (isContainsKey("CITY", keys)) {
-            System.out.println("Enter city:");
+            LOGGER.info("Enter city:");
             address.setCity(scanner.nextLine());
         }
         if (isContainsKey("STREET", keys)) {
-            System.out.println("Enter street:");
+            LOGGER.info("Enter street:");
             address.setStreet(scanner.nextLine());
         }
         if (isContainsKey("NAME", keys)) {
-            System.out.println("Enter name:");
+            LOGGER.info("Enter name:");
             hotel = new HotelsModel();
             hotel.setNameHotel(scanner.nextLine());
         }
-        if (isContainsKey("ROOM_TYPE", keys)) {
-            System.out.println("Enter room type:");
-            roomType = new RoomTypesModel();
-            roomType.setRoomType(scanner.nextLine());
-        }
         if (isContainsKey("SELECT", keys)) {
-            System.out.println("Enter hotel number:");
+            LOGGER.info("Enter hotel number:");
             selectedHotel = hotelsService.findHotelById(scanner.nextLong());
             command.setHOTEL(selectedHotel);
-            System.out.println(selectedHotel);
+            LOGGER.info(selectedHotel);
         }
         if (isContainsKey("STAFF", keys) && selectedHotel != null) {
             Map<StaffModel, PositionModel > staffModels = staffService.getAllHotelsStaff(selectedHotel);
             if (staffModels != null) {
-                System.out.println(staffModels);
+                LOGGER.info(staffModels);
             } else {
-                System.out.println("No staff in hotel.");
+                LOGGER.info("No staff in hotel.");
             }
         } else if (!isContainsKey("STAFF", keys)) {
-            System.out.println("No selected hotel. Try \"hotels -select\"");
+            LOGGER.info("No selected hotel. Try \"hotels -select\"");
         }
-        System.out.println(hotelsService.findByParameters(address, roomType, hotel));
+        LOGGER.info(hotelsService.findByParameters(address, hotel));
     }
     public static boolean isContainsKey(String keyName, String[] keys) {
         return Arrays.asList(keys).contains(HotelsKeys.valueOf(keyName).key);

@@ -12,6 +12,7 @@ public class RoomService {
     private RoomsDAO roomsDAO = new RoomsDAO();
 
     public List<RoomsModel> getRoomsByParameters(RoomTypesModel roomType, HotelsModel hotel) {
-        return roomsDAO.getFreeRoomsForHotel(hotel, roomType);
+
+        return null;
     }
 }

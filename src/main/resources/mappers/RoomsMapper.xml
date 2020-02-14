@@ -10,6 +10,12 @@
         <result property="description" column="description"/>
         <result property="roomStatus" column="roomStatus"/>
     </resultMap>
+    <select id="getFreeRoomsForHotel" parameterType="hashmap" resultMap="rooms">
+        select * from Rooms r
+        left outer join Bookings b on b.rooms_id = r.idRooms
+        join RoomTypes rt on rt.idRoomTypes = r.roomTypes_id
+        where rt.roomType = #{roomType}
+    </select>
     <select id="getRoomsById" parameterType="java.lang.Long">
         select * from Rooms where idRooms = #{idRooms}
     </select>

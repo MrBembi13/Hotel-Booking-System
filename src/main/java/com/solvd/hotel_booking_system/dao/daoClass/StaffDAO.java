@@ -2,13 +2,16 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IStaffDAO;
 import com.solvd.hotel_booking_system.model.StaffModel;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class StaffDAO implements IStaffDAO {
+
+    private static final Logger LOGGER = LogManager.getLogger(StaffDAO.class);
 
     private IStaffDAO entityDAO;
     private Class<IStaffDAO> DAOClass = IStaffDAO.class;
@@ -21,7 +24,7 @@ public class StaffDAO implements IStaffDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffById(id);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -35,7 +38,7 @@ public class StaffDAO implements IStaffDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffList();
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -50,7 +53,7 @@ public class StaffDAO implements IStaffDAO {
             entityDAO.insertStaff(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -64,7 +67,7 @@ public class StaffDAO implements IStaffDAO {
             entityDAO.deleteStaff(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -78,7 +81,7 @@ public class StaffDAO implements IStaffDAO {
             entityDAO.updateStaff(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }

@@ -2,14 +2,17 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IHotelsDAO;
 import com.solvd.hotel_booking_system.model.HotelsModel;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Map;
 
 public class HotelsDAO implements IHotelsDAO {
+
+    private static final Logger LOGGER = LogManager.getLogger(HotelsDAO.class);
 
     private IHotelsDAO entityDAO;
     private Class<IHotelsDAO> DAOClass = IHotelsDAO.class;
@@ -22,7 +25,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.findByParameters(map);
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -36,7 +39,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getHotelsById(id);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -50,7 +53,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getHotelsList();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -65,7 +68,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO.insertHotels(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -79,7 +82,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO.deleteHotels(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -93,7 +96,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO.updateHotels(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }

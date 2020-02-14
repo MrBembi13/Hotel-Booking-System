@@ -2,13 +2,16 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IPaymentsDAO;
 import com.solvd.hotel_booking_system.model.PaymentsModel;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class PaymentsDAO implements IPaymentsDAO {
+
+    private static final Logger LOGGER = LogManager.getLogger(PaymentsDAO.class);
 
     private IPaymentsDAO entityDAO;
     private Class<IPaymentsDAO> DAOClass = IPaymentsDAO.class;
@@ -21,7 +24,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsById(id);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -35,7 +38,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsList();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -50,7 +53,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO.insertPayments(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -64,7 +67,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO.deletePayments(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -78,7 +81,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO.updatePayments(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }

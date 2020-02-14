@@ -7,11 +7,16 @@ import com.solvd.hotel_booking_system.dao.daoClass.AddressDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.HotelsDAO;
 import com.solvd.hotel_booking_system.dao.daoClass.RoomTypesDAO;
 import com.solvd.hotel_booking_system.model.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class HotelsService {
+
+    private static final Logger LOGGER = LogManager.getLogger(HotelsService.class);
 
     private IAddressDAO addressDAO = new AddressDAO();
     private IHotelsDAO hotelsDAO = new HotelsDAO();
@@ -33,21 +38,11 @@ public class HotelsService {
         return false;
     }
 
-    public List<HotelsModel> findByParameters(AddressModel address,
-                                              RoomTypesModel roomType, HotelsModel hotel) {//IF STATEMENT IN MAPPERS
-        if(address == null) {
-            //return hotelsDAO.getByParameters(String city...)
-             /*return hotelsDAO.find() {
-            select hotels
-            join roomType on Room_types.room_type = #{roomType}
-            <if address != null>
-
-            </if>
-            join address on address.city = #{address.city}
-            where hotels.name = #{hotel.name}}*/
-        } else {
-            //return hotelsDAO.getByParameters(Address address...)
-        }
-        return null;
+    public List<HotelsModel> findByParameters(AddressModel address, HotelsModel hotel) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("street", address.getStreet());
+        map.put("city", address.getCity());
+        map.put("nameHotel", hotel.getNameHotel());
+        return hotelsDAO.findByParameters(map);
     }
 }

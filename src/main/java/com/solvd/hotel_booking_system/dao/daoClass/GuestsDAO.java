@@ -2,13 +2,16 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IGuestsDAO;
 import com.solvd.hotel_booking_system.model.GuestsModel;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class GuestsDAO implements IGuestsDAO {
+
+    private static final Logger LOGGER = LogManager.getLogger(GuestsDAO.class);
 
     private IGuestsDAO entityDAO;
     private Class<IGuestsDAO> DAOClass = IGuestsDAO.class;
@@ -21,7 +24,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsByPhone(phone);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -35,7 +38,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsById(id);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -49,7 +52,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsList();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -64,7 +67,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO.insertGuests(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -78,7 +81,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO.deleteGuests(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -92,7 +95,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO.updateGuests(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }

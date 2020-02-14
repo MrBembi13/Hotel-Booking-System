@@ -3,12 +3,12 @@ package com.solvd.hotel_booking_system.ui;
 import com.solvd.hotel_booking_system.model.GuestsModel;
 import com.solvd.hotel_booking_system.model.HotelsModel;
 import com.solvd.hotel_booking_system.ui.commands.*;
-import com.solvd.hotel_booking_system.ui.keys.HotelsKeys;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
-
-import java.util.Arrays;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ConsoleCommand {
+
+    private static final Logger LOGGER = LogManager.getLogger(ConsoleCommand.class);
 
     private static HotelsModel HOTEL;
     private static GuestsModel GUEST;
@@ -55,23 +55,31 @@ public class ConsoleCommand {
 
         switch (command) {
             case EXIT: {
-                System.out.println("Bye");
+                LOGGER.info("Bye");
                 System.exit(0);
                 break;
             }
-//            case PAYMENTS: {
-//                if(isValidKeys()) {
-//                    PaymentsCommandImpl.doCommand(keys, this);
-//                } else {
-//                    System.out.println("Invalid payments command. Try help payments");
-//                }
-//                break;
-//            }
+            case LOGIN: {
+                if(isValidKeys()) {
+                    LoginCommandImpl.doCommand(keys, this);
+                } else {
+                    LOGGER.info("Invalid login command. Try help login");
+                }
+                break;
+            }
+            case LOGOUT: {
+                if(isValidKeys()) {
+                    LogoutCommandImpl.doCommand(keys, this);
+                } else {
+                    LOGGER.info("Invalid logout command. Try help logout");
+                }
+                break;
+            }
             case BOOKINGS: {
                 if(isValidKeys()) {
                     BookingsCommandImpl.doCommand(keys, this);
                 } else {
-                    System.out.println("Invalid bookings command. Try help bookings");
+                    LOGGER.info("Invalid bookings command. Try help bookings");
                 }
                 break;
             }
@@ -79,7 +87,7 @@ public class ConsoleCommand {
                 if(isValidKeys()) {
                     RoomsCommandImpl.doCommand(keys, this);
                 } else {
-                    System.out.println("Invalid rooms command. Try help rooms");
+                    LOGGER.info("Invalid rooms command. Try help rooms");
                 }
                 break;
             }
@@ -87,24 +95,24 @@ public class ConsoleCommand {
                 if(isValidKeys()) {
                     HotelsCommandImpl.doCommand(keys, this);
                 } else {
-                    System.out.println("Invalid hotels command. Try help hotels");
+                    LOGGER.info("Invalid hotels command. Try help hotels");
                 }
                 break;
             }
             case HELP: {
                 if (this.keys.length == 0) {
                     for(CommandsEnum commandsEnum: CommandsEnum.values()) {
-                        System.out.println(commandsEnum.description);
+                        LOGGER.info(commandsEnum.description);
                     }
                 }
                 if(this.keys.length > 1) {
-                    System.out.println("Invalid keys. Try \"help [command]\"");
+                    LOGGER.info("Invalid keys. Try \"help [command]\"");
                 } else {
                     try {
-                        System.out.println(CommandsEnum
+                        LOGGER.info(CommandsEnum
                                 .valueOf(keys[0].toUpperCase()).description);
                     } catch (Exception e) {
-                        LoggerUtil.LOGGER.error(e.getMessage());
+                        LOGGER.error(e.getMessage());
                     }
                 }
                 break;

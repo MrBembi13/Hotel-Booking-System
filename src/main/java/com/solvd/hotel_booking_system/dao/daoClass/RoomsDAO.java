@@ -1,29 +1,31 @@
 package com.solvd.hotel_booking_system.dao.daoClass;
 
 import com.solvd.hotel_booking_system.dao.IRoomsDAO;
-import com.solvd.hotel_booking_system.model.HotelsModel;
-import com.solvd.hotel_booking_system.model.RoomTypesModel;
 import com.solvd.hotel_booking_system.model.RoomsModel;
-import com.solvd.hotel_booking_system.util.LoggerUtil;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Map;
 
 public class RoomsDAO implements IRoomsDAO {
+
+    private static final Logger LOGGER = LogManager.getLogger(RoomsDAO.class);
 
     private IRoomsDAO entityDAO;
     private Class<IRoomsDAO> DAOClass = IRoomsDAO.class;
     private SqlSession session;
 
     @Override
-    public List<RoomsModel> getFreeRoomsForHotel(HotelsModel hotelsModel, RoomTypesModel roomTypesModel) {
+    public List<RoomsModel> getFreeRoomsForHotel(Map<String, Object> map) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
-            return entityDAO.getFreeRoomsForHotel(hotelsModel, roomTypesModel);
+            return entityDAO.getFreeRoomsForHotel(map);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -37,7 +39,7 @@ public class RoomsDAO implements IRoomsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomsById(id);
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -51,7 +53,7 @@ public class RoomsDAO implements IRoomsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomsList();
         } catch (Exception e){
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -66,7 +68,7 @@ public class RoomsDAO implements IRoomsDAO {
             entityDAO.insertRooms(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -80,7 +82,7 @@ public class RoomsDAO implements IRoomsDAO {
             entityDAO.deleteRooms(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -94,7 +96,7 @@ public class RoomsDAO implements IRoomsDAO {
             entityDAO.updateRooms(entity);
             session.commit();
         } catch (Exception e) {
-            LoggerUtil.LOGGER.error(e);
+            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
