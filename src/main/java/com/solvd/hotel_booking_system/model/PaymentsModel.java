@@ -1,6 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class PaymentsModel {
 
@@ -52,5 +53,20 @@ public class PaymentsModel {
                 ", paymentType_id=" + paymentType_id +
                 ", paymentNumber=" + paymentNumber +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PaymentsModel)) return false;
+        PaymentsModel that = (PaymentsModel) o;
+        return getPaymentNumber() == that.getPaymentNumber() &&
+                getDate().equals(that.getDate()) &&
+                getPaymentType_id().equals(that.getPaymentType_id());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDate(), getPaymentType_id(), getPaymentNumber());
     }
 }

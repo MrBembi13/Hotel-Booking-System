@@ -1,5 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
+import java.util.Objects;
+
 public class RoomTypesModel {
 
     private Long idRoomTypes;
@@ -40,5 +42,19 @@ public class RoomTypesModel {
                 ", roomType='" + roomType + '\'' +
                 ", priceForNight=" + priceForNight +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RoomTypesModel)) return false;
+        RoomTypesModel that = (RoomTypesModel) o;
+        return getPriceForNight() == that.getPriceForNight() &&
+                getRoomType().equals(that.getRoomType());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRoomType(), getPriceForNight());
     }
 }

@@ -1,5 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
+import java.util.Objects;
+
 public class PositionModel {
 
     private Long idPosition;
@@ -45,5 +47,19 @@ public class PositionModel {
                 ", position='" + position + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PositionModel)) return false;
+        PositionModel that = (PositionModel) o;
+        return Objects.equals(getPosition(), that.getPosition()) &&
+                Objects.equals(getDescription(), that.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPosition(), getDescription());
     }
 }

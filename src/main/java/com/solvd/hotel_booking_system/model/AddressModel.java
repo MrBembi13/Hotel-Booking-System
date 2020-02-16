@@ -1,5 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
+import java.util.Objects;
+
 public class AddressModel {
 
     private Long idAddress;
@@ -87,5 +89,23 @@ public class AddressModel {
                 ", building='" + building + '\'' +
                 ", zip code='" + zipCode + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AddressModel)) return false;
+        AddressModel that = (AddressModel) o;
+        return getCountry().equals(that.getCountry()) &&
+                getState().equals(that.getState()) &&
+                getCity().equals(that.getCity()) &&
+                getStreet().equals(that.getStreet()) &&
+                getBuilding().equals(that.getBuilding()) &&
+                getZipCode().equals(that.getZipCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCountry(), getState(), getCity(), getStreet(), getBuilding(), getZipCode());
     }
 }
