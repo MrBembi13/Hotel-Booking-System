@@ -21,6 +21,12 @@
         <if test="dateTo != null">
             and dateTo = #{dateTo}
         </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="rooms_id != null">
+            and rooms_id = #{rooms_id}
+        </if>
     </select>
     <select id="getBookingsById" parameterType="java.lang.Long">
         select * from Bookings where idBookings = #{idBookings}
