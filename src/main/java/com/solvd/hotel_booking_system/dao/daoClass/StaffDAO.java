@@ -3,7 +3,9 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IStaffDAO;
 import com.solvd.hotel_booking_system.model.StaffModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,10 +25,12 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffById(id);
-        } catch (Exception e){
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -37,10 +41,12 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAllStaffForHotel(hotels_id);
-        } catch (Exception e){
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -51,10 +57,12 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffList();
-        } catch (Exception e){
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -66,10 +74,12 @@ public class StaffDAO implements IStaffDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertStaff(entity);
             session.commit();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
     }
 
@@ -80,10 +90,12 @@ public class StaffDAO implements IStaffDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteStaff(entity);
             session.commit();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
     }
 
@@ -94,10 +106,12 @@ public class StaffDAO implements IStaffDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateStaff(entity);
             session.commit();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
     }
 }

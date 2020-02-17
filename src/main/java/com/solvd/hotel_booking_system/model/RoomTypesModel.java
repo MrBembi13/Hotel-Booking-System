@@ -1,5 +1,8 @@
 package com.solvd.hotel_booking_system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class RoomTypesModel {
@@ -11,10 +14,12 @@ public class RoomTypesModel {
     public RoomTypesModel() {
     }
 
+    @JsonIgnore
     public Long getIdRoomTypes() {
         return idRoomTypes;
     }
 
+    @JsonProperty
     public void setIdRoomTypes(Long idRoomTypes) {
         this.idRoomTypes = idRoomTypes;
     }
