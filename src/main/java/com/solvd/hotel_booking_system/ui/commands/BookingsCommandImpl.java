@@ -19,6 +19,7 @@ public class BookingsCommandImpl {
     private static final Logger LOGGER = LogManager.getLogger(BookingsCommandImpl.class);
 
     public static void doCommand(String[] keys, ConsoleCommand command) {
+
         Scanner scanner = new Scanner(System.in);
         BookingService bookingService = new BookingService();
 
@@ -26,28 +27,35 @@ public class BookingsCommandImpl {
         RoomTypesModel roomType = new RoomTypesModel();
 
         if (isContainsKey("NEW", keys)) {
-            if (command.getHOTEL() == null) {
-                LOGGER.info("No selected hotel.");
+            if (command.getHOTEL() == null || command.getGUEST() == null) {
+                LOGGER.info("No selected hotel or you're not logged.");
             } else {
                 LOGGER.info("Enter date from:");
                 try {
                     booking.setDateFrom(Date.valueOf(scanner.nextLine()));
-                } catch (Exception e) {
+                } catch (IllegalArgumentException e) {
+
                     LOGGER.info("Invaid date");
                     return;
                 }
                 LOGGER.info("Enter date to:");
                 try {
                     booking.setDateTo(Date.valueOf(scanner.nextLine()));
-                } catch (Exception e) {
+                } catch (IllegalArgumentException e) {
                     LOGGER.info("Invaid date");
                     return;
                 }
                 LOGGER.info("Enter room type:");
                 roomType.setRoomType(scanner.nextLine());
-                LOGGER.info(bookingService.saveBooking(booking, command.getHOTEL(), roomType, command.getGUEST()));
-                return;
+                BookingsModel persistedBooking = bookingService
+                        .saveBooking(booking, command.getHOTEL(), roomType, command.getGUEST());
+                if (persistedBooking == null) {
+                    LOGGER.error("Booking wasn't saved.");
+                } else {
+                    LOGGER.info("Booking " + booking + "was successfully saved.");
+                }
             }
+            return;
         }
         if (keys.length == 0) {
             LOGGER.info(bookingService.getAllBookingsForUser(command.getGUEST()));
@@ -57,7 +65,7 @@ public class BookingsCommandImpl {
             LOGGER.info("Enter date to:");
             try {
                 booking.setDateTo(Date.valueOf(scanner.nextLine()));
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 LOGGER.info("Invalid date.");
                 return;
             }
@@ -66,7 +74,7 @@ public class BookingsCommandImpl {
             LOGGER.info("Enter date from:");
             try {
                 booking.setDateFrom(Date.valueOf(scanner.nextLine()));
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 LOGGER.info("Invalid date.");
                 return;
             }

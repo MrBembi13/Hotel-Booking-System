@@ -61,44 +61,50 @@ public class BookingsDAO implements IBookingsDAO {
     }
 
     @Override
-    public void insertBookings(BookingsModel entity) {
+    public boolean insertBookings(BookingsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertBookings(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteBookings(BookingsModel entity) {
+    public boolean deleteBookings(BookingsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteBookings(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateBookings(BookingsModel entity) {
+    public boolean updateBookings(BookingsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateBookings(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

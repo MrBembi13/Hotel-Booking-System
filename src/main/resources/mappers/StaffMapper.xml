@@ -12,6 +12,11 @@
     <select id="getStaffById" parameterType="java.lang.Long">
         select * from Staff where idStaff = #{idStaff}
     </select>
+    <select id="getAllStaffForHotel" parameterType="java.lang.Long" resultMap="staff">
+        select * from Staff s
+        join Hotels h on h.idHotels = s.hotels_id
+        where hotels_id = #{hotels_id}
+    </select>
     <select id="getStaffList" resultMap="staff">
         select * from Staff
     </select>

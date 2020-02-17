@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StaffDAO implements IStaffDAO {
 
-    private static final Logger LOGGER = LogManager.getLogger(StaffDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(com.solvd.hotel_booking_system.dao.daoClass.StaffDAO.class);
 
     private IStaffDAO entityDAO;
     private Class<IStaffDAO> DAOClass = IStaffDAO.class;
@@ -23,6 +23,20 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffById(id);
+        } catch (Exception e){
+            LOGGER.error(e);
+        } finally {
+            if(session != null) session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public List<StaffModel> getAllStaffForHotel(Long hotels_id) {
+        try {
+            session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
+            entityDAO = session.getMapper(DAOClass);
+            return entityDAO.getAllStaffForHotel(hotels_id);
         } catch (Exception e){
             LOGGER.error(e);
         } finally {

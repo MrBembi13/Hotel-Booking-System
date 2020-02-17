@@ -29,8 +29,7 @@ public class RoomsCommandImpl {
         if (isContainsKey("TYPE", keys)) {
             LOGGER.info("Enter room type:");
             roomType.setRoomType(scanner.nextLine());
-        }
-        if (isContainsKey("PRICE", keys)) {
+        } else if (isContainsKey("PRICE", keys)) {
             LOGGER.info("Enter price:");
             try {
                 roomType.setPriceForNight(scanner.nextInt());

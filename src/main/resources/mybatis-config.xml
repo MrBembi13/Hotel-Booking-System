@@ -30,5 +30,6 @@
         <mapper resource="mappers/RoomsMapper.xml"/>
         <mapper resource="mappers/RoomTypesMapper.xml"/>
         <mapper resource="mappers/StaffMapper.xml"/>
+        <mapper resource="mappers/SystemInformationMapper.xml"/>
     </mappers>
 </configuration>
