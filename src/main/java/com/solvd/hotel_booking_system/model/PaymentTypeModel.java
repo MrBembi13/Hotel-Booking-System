@@ -1,5 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
+import java.util.Objects;
+
 public class PaymentTypeModel {
 
     private Long idPaymentType;
@@ -40,5 +42,19 @@ public class PaymentTypeModel {
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PaymentTypeModel)) return false;
+        PaymentTypeModel that = (PaymentTypeModel) o;
+        return getType().equals(that.getType()) &&
+                getDescription().equals(that.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType(), getDescription());
     }
 }

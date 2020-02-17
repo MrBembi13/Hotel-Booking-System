@@ -1,5 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
+import java.util.Objects;
+
 public class GuestsModel {
 
     private Long idGuests;
@@ -77,5 +79,22 @@ public class GuestsModel {
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GuestsModel)) return false;
+        GuestsModel that = (GuestsModel) o;
+        return getFirstName().equals(that.getFirstName()) &&
+                getLastName().equals(that.getLastName()) &&
+                getPhoneNumber().equals(that.getPhoneNumber()) &&
+                getEmail().equals(that.getEmail()) &&
+                getGender().equals(that.getGender());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getLastName(), getPhoneNumber(), getEmail(), getGender());
     }
 }

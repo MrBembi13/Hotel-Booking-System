@@ -1,6 +1,7 @@
 package com.solvd.hotel_booking_system.model;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class BookingsModel {
 
@@ -92,5 +93,23 @@ public class BookingsModel {
                 ", payments_id=" + payments_id +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookingsModel)) return false;
+        BookingsModel that = (BookingsModel) o;
+        return getGuests_id().equals(that.getGuests_id()) &&
+                getHotels_id().equals(that.getHotels_id()) &&
+                getDateFrom().equals(that.getDateFrom()) &&
+                getDateTo().equals(that.getDateTo()) &&
+                getRooms_id().equals(that.getRooms_id()) &&
+                getStatus().equals(that.getStatus());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGuests_id(), getHotels_id(), getDateFrom(), getDateTo(), getRooms_id(), getStatus());
     }
 }
