@@ -68,8 +68,22 @@ public class BookingService {
         return bookingsDAO.findByParameters(parametersMap);
     }
 
+    public List<BookingsModel> getBookingsByParameters(BookingsModel booking) {
+        Map<String, Object> parametersMap = new HashMap<>();
+        parametersMap.put("dateFrom", booking.getDateFrom());
+        parametersMap.put("dateTo", booking.getDateTo());
+        parametersMap.put("status", booking.getStatus());
+        parametersMap.put("rooms_id", booking.getRooms_id());
+        parametersMap.put("guests_id", booking.getGuests_id());
+        return bookingsDAO.findByParameters(parametersMap);
+    }
+
     private boolean persistBooking(BookingsModel booking) {
-        return bookingsDAO.insertBookings(booking);
+        if (getBookingsByParameters(booking).size() == 0) {
+            return bookingsDAO.insertBookings(booking);
+        } else {
+            return false;
+        }
     }
 
 }

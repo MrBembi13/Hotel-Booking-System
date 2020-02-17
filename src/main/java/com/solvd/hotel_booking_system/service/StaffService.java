@@ -12,10 +12,11 @@ import java.util.Map;
 
 public class StaffService {
 
+    private StaffDAO staffDAO = new StaffDAO();
+    private PositionDAO positionDAO = new PositionDAO();
+
     public Map<StaffModel, PositionModel> getAllHotelsStaff(HotelsModel hotel) {
 
-        StaffDAO staffDAO = new StaffDAO();
-        PositionDAO positionDAO = new PositionDAO();
         List<StaffModel> staffModels = staffDAO.getAllStaffForHotel(hotel.getIdHotels());
         Map<StaffModel, PositionModel> mapStaff = new HashMap<>();
         for(StaffModel staff: staffModels) {
