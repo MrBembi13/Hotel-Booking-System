@@ -1,5 +1,8 @@
 package com.solvd.hotel_booking_system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class StaffModel {
@@ -21,10 +24,12 @@ public class StaffModel {
         this.gender = gender;
     }
 
+    @JsonIgnore
     public Long getIdStaff() {
         return idStaff;
     }
 
+    @JsonProperty
     public void setIdStaff(Long idStaff) {
         this.idStaff = idStaff;
     }

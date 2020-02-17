@@ -3,7 +3,9 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IPaymentsDAO;
 import com.solvd.hotel_booking_system.model.PaymentsModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,10 +25,12 @@ public class PaymentsDAO implements IPaymentsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsById(id);
-        } catch (Exception e){
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -37,10 +41,12 @@ public class PaymentsDAO implements IPaymentsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsList();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -52,10 +58,12 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertPayments(entity);
             session.commit();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
     }
 
@@ -66,10 +74,12 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deletePayments(entity);
             session.commit();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
     }
 
@@ -80,10 +90,12 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updatePayments(entity);
             session.commit();
-        } catch (Exception e) {
+        } catch (SqlSessionException e) {
+            LOGGER.error(e.getMessage());
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
     }
 }

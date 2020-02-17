@@ -1,5 +1,8 @@
 package com.solvd.hotel_booking_system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -13,10 +16,12 @@ public class PaymentsModel {
     public PaymentsModel() {
     }
 
+    @JsonIgnore
     public Long getIdPayments() {
         return idPayments;
     }
 
+    @JsonProperty
     public void setIdPayments(Long idPayments) {
         this.idPayments = idPayments;
     }
