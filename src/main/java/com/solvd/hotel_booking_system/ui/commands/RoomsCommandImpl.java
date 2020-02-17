@@ -33,7 +33,7 @@ public class RoomsCommandImpl {
             LOGGER.info("Enter price:");
             try {
                 roomType.setPriceForNight(scanner.nextInt());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 LOGGER.error(e.getMessage());
                 LOGGER.info("Incorrect price.");
             }
