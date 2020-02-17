@@ -5,7 +5,6 @@ import com.solvd.hotel_booking_system.model.RoomTypesModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,10 +24,8 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesById(id);
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if (session != null) session.close();
         }
@@ -41,10 +38,8 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesList();
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if (session != null) session.close();
         }
@@ -58,10 +53,8 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertRoomTypes(entity);
             session.commit();
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if (session != null) session.close();
         }
@@ -74,10 +67,8 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteRoomTypes(entity);
             session.commit();
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if (session != null) session.close();
         }
@@ -90,10 +81,8 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateRoomTypes(entity);
             session.commit();
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if (session != null) session.close();
         }

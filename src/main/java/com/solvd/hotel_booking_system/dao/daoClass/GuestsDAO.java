@@ -5,7 +5,6 @@ import com.solvd.hotel_booking_system.model.GuestsModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,10 +24,8 @@ public class GuestsDAO implements IGuestsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsByPhone(phone);
-        } catch (SqlSessionException e) {
-            LOGGER.error(e.getMessage());
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
@@ -41,10 +38,8 @@ public class GuestsDAO implements IGuestsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsById(id);
-        } catch (SqlSessionException e) {
-            LOGGER.error(e.getMessage());
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
@@ -57,10 +52,8 @@ public class GuestsDAO implements IGuestsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsList();
-        } catch (SqlSessionException e) {
-            LOGGER.error(e.getMessage());
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
@@ -74,10 +67,8 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertGuests(entity);
             session.commit();
-        } catch (SqlSessionException e) {
-            LOGGER.error(e.getMessage());
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
@@ -90,10 +81,8 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteGuests(entity);
             session.commit();
-        } catch (SqlSessionException e) {
-            LOGGER.error(e.getMessage());
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
@@ -106,10 +95,8 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateGuests(entity);
             session.commit();
-        } catch (SqlSessionException e) {
-            LOGGER.error(e.getMessage());
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
