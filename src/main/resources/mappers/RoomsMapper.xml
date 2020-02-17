@@ -11,10 +11,18 @@
         <result property="roomStatus" column="roomStatus"/>
     </resultMap>
     <select id="getFreeRoomsForHotel" parameterType="hashmap" resultMap="rooms">
-        select * from Rooms r
-        left outer join Bookings b on b.rooms_id = r.idRooms
+        select * from Rooms as r
         join RoomTypes rt on rt.idRoomTypes = r.roomTypes_id
-        where rt.roomType = #{roomType}
+        <if test="roomType != null">
+            and rt.roomType = #{roomType}
+        </if>
+        where not r.idRooms in
+                (select Bookings.rooms_id
+                from Bookings
+                where status = 'booked' and not dateFrom = #{dateFrom}) and hotels_id = #{hotels_id}
+        <if test="dateFrom == currentDate">
+            and not r.status = '1'
+        </if>
     </select>
     <select id="getRoomsById" parameterType="java.lang.Long">
         select * from Rooms where idRooms = #{idRooms}

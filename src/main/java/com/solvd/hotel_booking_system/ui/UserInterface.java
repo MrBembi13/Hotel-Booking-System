@@ -16,7 +16,7 @@ public class UserInterface {
     public static void start(String[] args) {
         Scanner scanner = new Scanner(System.in);
         do {
-            LOGGER.info("Hotel-Booking-System>");
+            System.out.print("Hotel-Booking-System>");
             String input = scanner.nextLine();
             if(input.equals("")) continue;
             ConsoleCommand command = parseLineToCommand(input);

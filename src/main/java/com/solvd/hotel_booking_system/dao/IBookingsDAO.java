@@ -12,9 +12,9 @@ public interface IBookingsDAO {
 
     List<BookingsModel> findByParameters(Map<String, Object> map);
 
-    void insertBookings(BookingsModel entity);
+    boolean insertBookings(BookingsModel entity);
 
-    void deleteBookings(BookingsModel entity);
+    boolean deleteBookings(BookingsModel entity);
 
-    void updateBookings(BookingsModel entity);
+    boolean updateBookings(BookingsModel entity);
 }
