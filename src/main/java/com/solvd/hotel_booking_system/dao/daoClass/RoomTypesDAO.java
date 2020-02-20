@@ -24,7 +24,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesById(id);
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
@@ -38,7 +38,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesList();
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();

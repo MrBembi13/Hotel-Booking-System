@@ -39,7 +39,7 @@ public class BookingsDAO implements IBookingsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getBookingsById(id);
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
              if(session != null) session.close();

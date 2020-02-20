@@ -24,7 +24,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsById(id);
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();

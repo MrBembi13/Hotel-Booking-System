@@ -24,7 +24,7 @@ public class PositionDAO implements IPositionDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPositionById(id);
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();

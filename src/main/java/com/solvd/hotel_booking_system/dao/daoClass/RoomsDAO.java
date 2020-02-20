@@ -25,7 +25,7 @@ public class RoomsDAO implements IRoomsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getFreeRoomsForHotel(map);
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
@@ -39,7 +39,7 @@ public class RoomsDAO implements IRoomsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomsById(id);
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
@@ -53,7 +53,7 @@ public class RoomsDAO implements IRoomsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomsList();
-        } catch (PersistenceException e){
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
