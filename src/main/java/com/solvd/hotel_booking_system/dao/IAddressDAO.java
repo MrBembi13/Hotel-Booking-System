@@ -9,9 +9,9 @@ public interface IAddressDAO {
 
     List<AddressModel> getAddressList();
 
-    void insertAddress(AddressModel entity);
+    boolean insertAddress(AddressModel entity);
 
-    void deleteAddress(AddressModel entity);
+    boolean deleteAddress(AddressModel entity);
 
-    void updateAddress(AddressModel entity);
+    boolean updateAddress(AddressModel entity);
 }

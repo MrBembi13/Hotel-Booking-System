@@ -61,44 +61,50 @@ public class HotelsDAO implements IHotelsDAO {
     }
 
     @Override
-    public void insertHotels(HotelsModel entity) {
+    public boolean insertHotels(HotelsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertHotels(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteHotels(HotelsModel entity) {
+    public boolean deleteHotels(HotelsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteHotels(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateHotels(HotelsModel entity) {
+    public boolean updateHotels(HotelsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateHotels(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

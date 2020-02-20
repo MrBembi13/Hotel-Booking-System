@@ -18,9 +18,11 @@ public class BookingsCommandImpl {
 
     private static final Logger LOGGER = LogManager.getLogger(BookingsCommandImpl.class);
 
-    public static void doCommand(String[] keys, ConsoleCommand command) {
+    public static void doCommand(String[] keys, ConsoleCommand command, Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
         BookingService bookingService = new BookingService();
 
         BookingsModel booking = new BookingsModel();
@@ -34,10 +36,10 @@ public class BookingsCommandImpl {
                 try {
                     booking.setDateFrom(Date.valueOf(scanner.nextLine()));
                 } catch (IllegalArgumentException e) {
-
                     LOGGER.info("Invaid date");
                     return;
                 }
+
                 LOGGER.info("Enter date to:");
                 try {
                     booking.setDateTo(Date.valueOf(scanner.nextLine()));
@@ -45,6 +47,7 @@ public class BookingsCommandImpl {
                     LOGGER.info("Invaid date");
                     return;
                 }
+
                 LOGGER.info("Enter room type:");
                 roomType.setRoomType(scanner.nextLine());
                 BookingsModel persistedBooking = bookingService

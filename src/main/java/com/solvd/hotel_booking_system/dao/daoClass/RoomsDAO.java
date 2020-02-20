@@ -61,44 +61,50 @@ public class RoomsDAO implements IRoomsDAO {
     }
 
     @Override
-    public void insertRooms(RoomsModel entity) {
+    public boolean insertRooms(RoomsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertRooms(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteRooms(RoomsModel entity) {
+    public boolean deleteRooms(RoomsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteRooms(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateRooms(RoomsModel entity) {
+    public boolean updateRooms(RoomsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateRooms(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

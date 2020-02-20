@@ -20,7 +20,7 @@ public class UserInterface {
             String input = scanner.nextLine();
             if(input.equals("")) continue;
             ConsoleCommand command = parseLineToCommand(input);
-            if(command.getCommand() != null) command.doCommand();
+            if(command.getCommand() != null) command.doCommand(scanner);
         } while (true);
     }
 

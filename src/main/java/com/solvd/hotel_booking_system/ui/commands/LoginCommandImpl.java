@@ -13,9 +13,11 @@ public class LoginCommandImpl {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginCommandImpl.class);
 
-    public static void doCommand(String[] keys, ConsoleCommand command) {
+    public static void doCommand(String[] keys, ConsoleCommand command, Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
         if (keys.length != 0) {
             LOGGER.info("No keys for login command.");
         } else {

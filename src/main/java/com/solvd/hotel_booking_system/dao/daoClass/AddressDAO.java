@@ -46,44 +46,50 @@ public class AddressDAO implements IAddressDAO {
     }
 
     @Override
-    public void insertAddress(AddressModel entity) {
+    public boolean insertAddress(AddressModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertAddress(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteAddress(AddressModel entity) {
+    public boolean deleteAddress(AddressModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteAddress(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateAddress(AddressModel entity) {
+    public boolean updateAddress(AddressModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateAddress(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

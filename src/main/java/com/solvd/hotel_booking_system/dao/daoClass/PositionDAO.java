@@ -46,44 +46,50 @@ public class PositionDAO implements IPositionDAO {
     }
 
     @Override
-    public void insertPosition(PositionModel entity) {
+    public boolean insertPosition(PositionModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertPosition(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deletePosition(PositionModel entity) {
+    public boolean deletePosition(PositionModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deletePosition(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updatePosition(PositionModel entity) {
+    public boolean updatePosition(PositionModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updatePosition(entity);
             session.commit();
+            return true;
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }
