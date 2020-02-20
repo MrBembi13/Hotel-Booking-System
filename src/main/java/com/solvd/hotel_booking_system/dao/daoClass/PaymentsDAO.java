@@ -25,7 +25,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsById(id);
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -39,7 +39,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPaymentsList();
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -55,7 +55,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -71,7 +71,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -87,7 +87,7 @@ public class PaymentsDAO implements IPaymentsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }

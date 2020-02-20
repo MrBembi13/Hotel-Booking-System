@@ -25,7 +25,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressById(id);
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -39,7 +39,7 @@ public class AddressDAO implements IAddressDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressList();
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -55,7 +55,7 @@ public class AddressDAO implements IAddressDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -71,7 +71,7 @@ public class AddressDAO implements IAddressDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -87,7 +87,7 @@ public class AddressDAO implements IAddressDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }

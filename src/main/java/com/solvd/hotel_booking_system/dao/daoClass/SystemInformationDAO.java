@@ -25,10 +25,8 @@ public class SystemInformationDAO implements ISystemInformationDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getCurrentDate();
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
@@ -41,10 +39,8 @@ public class SystemInformationDAO implements ISystemInformationDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getActualInsertId(tableName);
-        } catch (SqlSessionException e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
-        } catch (PersistenceException e){
-            LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }

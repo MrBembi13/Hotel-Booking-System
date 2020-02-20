@@ -26,7 +26,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.findByParameters(map);
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -40,7 +40,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getHotelsById(id);
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -54,7 +54,7 @@ public class HotelsDAO implements IHotelsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getHotelsList();
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -70,7 +70,7 @@ public class HotelsDAO implements IHotelsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -86,7 +86,7 @@ public class HotelsDAO implements IHotelsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -102,7 +102,7 @@ public class HotelsDAO implements IHotelsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }

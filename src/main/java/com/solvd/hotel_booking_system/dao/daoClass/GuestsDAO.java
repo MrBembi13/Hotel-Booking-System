@@ -25,7 +25,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsByPhone(phone);
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -39,7 +39,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsById(id);
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -53,7 +53,7 @@ public class GuestsDAO implements IGuestsDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getGuestsList();
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -69,7 +69,7 @@ public class GuestsDAO implements IGuestsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -85,7 +85,7 @@ public class GuestsDAO implements IGuestsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -101,7 +101,7 @@ public class GuestsDAO implements IGuestsDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }

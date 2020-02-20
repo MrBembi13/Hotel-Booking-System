@@ -25,7 +25,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesById(id);
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -39,7 +39,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesList();
         } catch (PersistenceException e){
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -55,7 +55,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -71,7 +71,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
@@ -87,7 +87,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session.commit();
             return true;
         } catch (PersistenceException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
         } finally {
             if(session != null) session.close();
         }
