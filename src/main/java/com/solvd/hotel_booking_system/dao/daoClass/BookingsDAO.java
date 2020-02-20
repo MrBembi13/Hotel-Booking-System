@@ -28,21 +28,21 @@ public class BookingsDAO implements IBookingsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
 
     @Override
     public BookingsModel getBookingsById(Long id) {
-         try {
+        try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getBookingsById(id);
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-             if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -56,7 +56,7 @@ public class BookingsDAO implements IBookingsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -72,7 +72,7 @@ public class BookingsDAO implements IBookingsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -88,7 +88,7 @@ public class BookingsDAO implements IBookingsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -104,7 +104,7 @@ public class BookingsDAO implements IBookingsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }

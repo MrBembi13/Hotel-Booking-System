@@ -28,7 +28,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -42,7 +42,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -56,7 +56,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -72,7 +72,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -88,7 +88,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -104,7 +104,7 @@ public class HotelsDAO implements IHotelsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }

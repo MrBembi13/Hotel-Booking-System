@@ -27,7 +27,7 @@ public class GuestsDAO implements IGuestsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -41,7 +41,7 @@ public class GuestsDAO implements IGuestsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -55,7 +55,7 @@ public class GuestsDAO implements IGuestsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -71,7 +71,7 @@ public class GuestsDAO implements IGuestsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -87,7 +87,7 @@ public class GuestsDAO implements IGuestsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -103,7 +103,7 @@ public class GuestsDAO implements IGuestsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }

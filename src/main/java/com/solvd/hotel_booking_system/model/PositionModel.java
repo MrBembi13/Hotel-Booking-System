@@ -1,5 +1,8 @@
 package com.solvd.hotel_booking_system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class PositionModel {
@@ -16,10 +19,12 @@ public class PositionModel {
         this.position = position;
     }
 
+    @JsonIgnore
     public Long getIdPosition() {
         return idPosition;
     }
 
+    @JsonProperty
     public void setIdPosition(Long idPosition) {
         this.idPosition = idPosition;
     }

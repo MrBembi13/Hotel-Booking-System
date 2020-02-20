@@ -27,7 +27,7 @@ public class PaymentsDAO implements IPaymentsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -41,7 +41,7 @@ public class PaymentsDAO implements IPaymentsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return null;
     }
@@ -57,7 +57,7 @@ public class PaymentsDAO implements IPaymentsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -73,7 +73,7 @@ public class PaymentsDAO implements IPaymentsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
@@ -89,7 +89,7 @@ public class PaymentsDAO implements IPaymentsDAO {
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
-            if(session != null) session.close();
+            if (session != null) session.close();
         }
         return false;
     }
