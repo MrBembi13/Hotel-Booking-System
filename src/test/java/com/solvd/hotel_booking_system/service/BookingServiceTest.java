@@ -28,17 +28,16 @@ public class BookingServiceTest {
 
     @BeforeMethod
     public void init() {
-        booking = new BookingsModel();
-        hotel = new HotelsModel();
-        roomType = new RoomTypesModel();
-        guest = new GuestsModel();
-        bookingService = new BookingService();
-        bookingsDAO = new BookingsDAO();
         systemInformationDAO = new SystemInformationDAO();
     }
 
     @Test
-    public void wrongBookingDateSaveTest() {
+    public void testWrongBookingDateSaveTest() {
+        booking = new BookingsModel();
+        bookingService = new BookingService();
+        hotel = new HotelsModel();
+        roomType = new RoomTypesModel();
+        guest = new GuestsModel();
         Date wrongDateTo = Date.valueOf("2020-12-20");
         Date wrongDateFrom = Date.valueOf("2020-12-25");
         booking.setDateTo(wrongDateTo);
@@ -47,7 +46,13 @@ public class BookingServiceTest {
     }
 
     @Test(enabled = false)
-    public void successfullyBookingSaveTest() {
+    public void testSuccessfullyBookingSaveTest() {
+        booking = new BookingsModel();
+        bookingService = new BookingService();
+        hotel = new HotelsModel();
+        roomType = new RoomTypesModel();
+        guest = new GuestsModel();
+
         Date dateTo = Date.valueOf("2021-01-25");
         Date dateFrom = Date.valueOf("2021-01-20");
 
@@ -62,8 +67,11 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void successfullyGetAllBookingsForUser() {
+    public void testSuccessfullyGetAllBookingsForUser() {
+        guest = new GuestsModel();
         guest.setIdGuests(1L);
+        bookingService = new BookingService();
+        bookingsDAO = new BookingsDAO();
 
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("guests_id", guest.getIdGuests());
@@ -72,7 +80,10 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void wrongGetAllBookingForUser() {
+    public void testWrongGetAllBookingForUser() {
+        bookingService = new BookingService();
+        guest = new GuestsModel();
+        bookingsDAO = new BookingsDAO();
 
         guest.setIdGuests(systemInformationDAO.getActualInsertId("Guests") + 1);
 
