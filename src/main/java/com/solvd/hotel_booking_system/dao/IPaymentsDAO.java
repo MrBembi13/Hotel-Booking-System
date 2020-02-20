@@ -9,9 +9,9 @@ public interface IPaymentsDAO {
 
     List<PaymentsModel> getPaymentsList();
 
-    void insertPayments(PaymentsModel entity);
+    boolean insertPayments(PaymentsModel entity);
 
-    void deletePayments(PaymentsModel entity);
+    boolean deletePayments(PaymentsModel entity);
 
-    void updatePayments(PaymentsModel entity);
+    boolean updatePayments(PaymentsModel entity);
 }

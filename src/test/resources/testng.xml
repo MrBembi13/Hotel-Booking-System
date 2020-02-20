@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Hotel booking system tests">
+    <test name="Booking tests">
+        <classes>
+            <class name="com.solvd.hotel_booking_system.service.BookingServiceTest"/>
+            <class name="com.solvd.hotel_booking_system.service.StaffServiceTest"/>
+        </classes>
+    </test>
+</suite>

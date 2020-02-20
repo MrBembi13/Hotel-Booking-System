@@ -47,44 +47,50 @@ public class PaymentTypeDAO implements IPaymentTypeDAO {
     }
 
     @Override
-    public void insertPaymentType(PaymentTypeModel entity) {
+    public boolean insertPaymentType(PaymentTypeModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertPaymentType(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deletePaymentType(PaymentTypeModel entity) {
+    public boolean deletePaymentType(PaymentTypeModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deletePaymentType(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updatePaymentType(PaymentTypeModel entity) {
+    public boolean updatePaymentType(PaymentTypeModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updatePaymentType(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 }

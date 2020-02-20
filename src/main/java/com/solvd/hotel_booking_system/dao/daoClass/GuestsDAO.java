@@ -61,44 +61,50 @@ public class GuestsDAO implements IGuestsDAO {
     }
 
     @Override
-    public void insertGuests(GuestsModel entity) {
+    public boolean insertGuests(GuestsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertGuests(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteGuests(GuestsModel entity) {
+    public boolean deleteGuests(GuestsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteGuests(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateGuests(GuestsModel entity) {
+    public boolean updateGuests(GuestsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateGuests(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 }

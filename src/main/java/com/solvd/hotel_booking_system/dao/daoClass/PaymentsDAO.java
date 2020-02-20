@@ -47,44 +47,50 @@ public class PaymentsDAO implements IPaymentsDAO {
     }
 
     @Override
-    public void insertPayments(PaymentsModel entity) {
+    public boolean insertPayments(PaymentsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertPayments(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deletePayments(PaymentsModel entity) {
+    public boolean deletePayments(PaymentsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deletePayments(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updatePayments(PaymentsModel entity) {
+    public boolean updatePayments(PaymentsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updatePayments(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 }

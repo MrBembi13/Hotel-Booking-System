@@ -14,9 +14,9 @@ public interface IRoomsDAO {
 
     List<RoomsModel> getFreeRoomsForHotel(Map<String, Object> map);
 
-    void insertRooms(RoomsModel entity);
+    boolean insertRooms(RoomsModel entity);
 
-    void deleteRooms(RoomsModel entity);
+    boolean deleteRooms(RoomsModel entity);
 
-    void updateRooms(RoomsModel entity);
+    boolean updateRooms(RoomsModel entity);
 }

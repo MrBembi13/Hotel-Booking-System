@@ -61,44 +61,50 @@ public class StaffDAO implements IStaffDAO {
     }
 
     @Override
-    public void insertStaff(StaffModel entity) {
+    public boolean insertStaff(StaffModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertStaff(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteStaff(StaffModel entity) {
+    public boolean deleteStaff(StaffModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteStaff(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateStaff(StaffModel entity) {
+    public boolean updateStaff(StaffModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateStaff(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 }

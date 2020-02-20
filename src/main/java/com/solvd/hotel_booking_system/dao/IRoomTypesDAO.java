@@ -9,9 +9,9 @@ public interface IRoomTypesDAO {
 
     List<RoomTypesModel> getRoomTypesList();
 
-    void insertRoomTypes(RoomTypesModel entity);
+    boolean insertRoomTypes(RoomTypesModel entity);
 
-    void deleteRoomTypes(RoomTypesModel entity);
+    boolean deleteRoomTypes(RoomTypesModel entity);
 
-    void updateRoomTypes(RoomTypesModel entity);
+    boolean updateRoomTypes(RoomTypesModel entity);
 }

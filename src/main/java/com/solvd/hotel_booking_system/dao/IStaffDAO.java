@@ -11,9 +11,9 @@ public interface IStaffDAO {
 
     List<StaffModel> getStaffList();
 
-    void insertStaff(StaffModel entity);
+    boolean insertStaff(StaffModel entity);
 
-    void deleteStaff(StaffModel entity);
+    boolean deleteStaff(StaffModel entity);
 
-    void updateStaff(StaffModel entity);
+    boolean updateStaff(StaffModel entity);
 }

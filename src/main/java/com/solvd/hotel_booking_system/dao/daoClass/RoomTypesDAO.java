@@ -47,44 +47,50 @@ public class RoomTypesDAO implements IRoomTypesDAO {
     }
 
     @Override
-    public void insertRoomTypes(RoomTypesModel entity) {
+    public boolean insertRoomTypes(RoomTypesModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertRoomTypes(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteRoomTypes(RoomTypesModel entity) {
+    public boolean deleteRoomTypes(RoomTypesModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteRoomTypes(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateRoomTypes(RoomTypesModel entity) {
+    public boolean updateRoomTypes(RoomTypesModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateRoomTypes(entity);
             session.commit();
+            return true;
         } catch (PersistenceException e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (session != null) session.close();
         }
+        return false;
     }
 }

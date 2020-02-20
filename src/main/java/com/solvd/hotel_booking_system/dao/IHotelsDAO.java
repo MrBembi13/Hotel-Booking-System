@@ -12,9 +12,9 @@ public interface IHotelsDAO {
 
     List<HotelsModel> findByParameters(Map<String, Object> map);
 
-    void insertHotels(HotelsModel entity);
+    boolean insertHotels(HotelsModel entity);
 
-    void deleteHotels(HotelsModel entity);
+    boolean deleteHotels(HotelsModel entity);
 
-    void updateHotels(HotelsModel entity);
+    boolean updateHotels(HotelsModel entity);
 }

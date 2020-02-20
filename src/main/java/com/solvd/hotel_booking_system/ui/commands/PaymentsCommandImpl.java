@@ -18,9 +18,11 @@ public class PaymentsCommandImpl {
 
     private static final Logger LOGGER = LogManager.getLogger(PaymentsCommandImpl.class);
 
-    public static void doCommand(String[] keys, ConsoleCommand command) {
+    public static void doCommand(String[] keys, ConsoleCommand command, Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
 
         PaymentsModel payment = new PaymentsModel();
         PaymentTypeModel paymentType = new PaymentTypeModel();
@@ -31,7 +33,7 @@ public class PaymentsCommandImpl {
             LOGGER.info("Enter date(\"yyyy-mm-dd\")");
             try {
                 payment.setDate(Date.valueOf(scanner.nextLine()));
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 LOGGER.info("Invalid date.");
             }
         }

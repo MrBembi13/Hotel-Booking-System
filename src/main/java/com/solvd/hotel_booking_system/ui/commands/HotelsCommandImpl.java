@@ -20,9 +20,11 @@ public class HotelsCommandImpl {
 
     private static final Logger LOGGER = LogManager.getLogger(AddressDAO.class);
 
-    public static void doCommand(String[] keys, ConsoleCommand command) {
+    public static void doCommand(String[] keys, ConsoleCommand command, Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
 
         AddressModel address = new AddressModel();
         HotelsModel hotel = null;
