@@ -3,6 +3,7 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IPositionDAO;
 import com.solvd.hotel_booking_system.model.PositionModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +24,7 @@ public class PositionDAO implements IPositionDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPositionById(id);
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -37,7 +38,7 @@ public class PositionDAO implements IPositionDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getPositionList();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -46,44 +47,50 @@ public class PositionDAO implements IPositionDAO {
     }
 
     @Override
-    public void insertPosition(PositionModel entity) {
+    public boolean insertPosition(PositionModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertPosition(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deletePosition(PositionModel entity) {
+    public boolean deletePosition(PositionModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deletePosition(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updatePosition(PositionModel entity) {
+    public boolean updatePosition(PositionModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updatePosition(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

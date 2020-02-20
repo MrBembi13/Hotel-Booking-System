@@ -11,9 +11,9 @@ public interface IGuestsDAO {
 
     List<GuestsModel> getGuestsList();
 
-    void insertGuests(GuestsModel entity);
+    boolean insertGuests(GuestsModel entity);
 
-    void deleteGuests(GuestsModel entity);
+    boolean deleteGuests(GuestsModel entity);
 
-    void updateGuests(GuestsModel entity);
+    boolean updateGuests(GuestsModel entity);
 }

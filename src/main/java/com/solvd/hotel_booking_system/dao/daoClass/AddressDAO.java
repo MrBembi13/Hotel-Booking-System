@@ -3,6 +3,7 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IAddressDAO;
 import com.solvd.hotel_booking_system.model.AddressModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +24,7 @@ public class AddressDAO implements IAddressDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressById(id);
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -37,7 +38,7 @@ public class AddressDAO implements IAddressDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAddressList();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -46,44 +47,50 @@ public class AddressDAO implements IAddressDAO {
     }
 
     @Override
-    public void insertAddress(AddressModel entity) {
+    public boolean insertAddress(AddressModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertAddress(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteAddress(AddressModel entity) {
+    public boolean deleteAddress(AddressModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteAddress(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateAddress(AddressModel entity) {
+    public boolean updateAddress(AddressModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateAddress(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

@@ -6,6 +6,8 @@ import com.solvd.hotel_booking_system.ui.commands.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Scanner;
+
 public class ConsoleCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(ConsoleCommand.class);
@@ -51,7 +53,7 @@ public class ConsoleCommand {
         this.keys = keys;
     }
 
-    public void doCommand() {
+    public void doCommand(Scanner scanner) {
 
         switch (command) {
             case EXIT: {
@@ -61,7 +63,7 @@ public class ConsoleCommand {
             }
             case LOGIN: {
                 if(isValidKeys()) {
-                    LoginCommandImpl.doCommand(keys, this);
+                    LoginCommandImpl.doCommand(keys, this, scanner);
                 } else {
                     LOGGER.info("Invalid login command. Try help login");
                 }
@@ -77,7 +79,7 @@ public class ConsoleCommand {
             }
             case BOOKINGS: {
                 if(isValidKeys()) {
-                    BookingsCommandImpl.doCommand(keys, this);
+                    BookingsCommandImpl.doCommand(keys, this, scanner);
                 } else {
                     LOGGER.info("Invalid bookings command. Try help bookings");
                 }
@@ -85,7 +87,7 @@ public class ConsoleCommand {
             }
             case ROOMS: {
                 if(isValidKeys()) {
-                    RoomsCommandImpl.doCommand(keys, this);
+                    RoomsCommandImpl.doCommand(keys, this, scanner);
                 } else {
                     LOGGER.info("Invalid rooms command. Try help rooms");
                 }
@@ -93,7 +95,7 @@ public class ConsoleCommand {
             }
             case HOTELS: {
                 if(isValidKeys()) {
-                    HotelsCommandImpl.doCommand(keys, this);
+                    HotelsCommandImpl.doCommand(keys, this, scanner);
                 } else {
                     LOGGER.info("Invalid hotels command. Try help hotels");
                 }

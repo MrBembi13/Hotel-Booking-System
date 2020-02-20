@@ -3,6 +3,7 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IRoomTypesDAO;
 import com.solvd.hotel_booking_system.model.RoomTypesModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +24,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesById(id);
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -37,7 +38,7 @@ public class RoomTypesDAO implements IRoomTypesDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getRoomTypesList();
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -46,44 +47,50 @@ public class RoomTypesDAO implements IRoomTypesDAO {
     }
 
     @Override
-    public void insertRoomTypes(RoomTypesModel entity) {
+    public boolean insertRoomTypes(RoomTypesModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertRoomTypes(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteRoomTypes(RoomTypesModel entity) {
+    public boolean deleteRoomTypes(RoomTypesModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteRoomTypes(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateRoomTypes(RoomTypesModel entity) {
+    public boolean updateRoomTypes(RoomTypesModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateRoomTypes(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

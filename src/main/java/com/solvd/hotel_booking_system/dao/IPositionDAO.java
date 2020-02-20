@@ -9,9 +9,9 @@ public interface IPositionDAO {
 
     List<PositionModel> getPositionList();
 
-    void insertPosition(PositionModel entity);
+    boolean insertPosition(PositionModel entity);
 
-    void deletePosition(PositionModel entity);
+    boolean deletePosition(PositionModel entity);
 
-    void updatePosition(PositionModel entity);
+    boolean updatePosition(PositionModel entity);
 }

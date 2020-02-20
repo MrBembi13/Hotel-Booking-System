@@ -3,6 +3,7 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IStaffDAO;
 import com.solvd.hotel_booking_system.model.StaffModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +24,7 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffById(id);
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -37,7 +38,7 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getAllStaffForHotel(hotels_id);
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -51,7 +52,7 @@ public class StaffDAO implements IStaffDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getStaffList();
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -60,44 +61,50 @@ public class StaffDAO implements IStaffDAO {
     }
 
     @Override
-    public void insertStaff(StaffModel entity) {
+    public boolean insertStaff(StaffModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertStaff(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteStaff(StaffModel entity) {
+    public boolean deleteStaff(StaffModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteStaff(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateStaff(StaffModel entity) {
+    public boolean updateStaff(StaffModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateStaff(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

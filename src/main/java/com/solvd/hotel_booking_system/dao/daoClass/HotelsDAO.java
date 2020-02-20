@@ -3,6 +3,7 @@ package com.solvd.hotel_booking_system.dao.daoClass;
 import com.solvd.hotel_booking_system.dao.IHotelsDAO;
 import com.solvd.hotel_booking_system.model.HotelsModel;
 import com.solvd.hotel_booking_system.util.MyBatisConfigUtil;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +25,7 @@ public class HotelsDAO implements IHotelsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.findByParameters(map);
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -38,7 +39,7 @@ public class HotelsDAO implements IHotelsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getHotelsById(id);
-        } catch (Exception e){
+        } catch (PersistenceException e){
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -52,7 +53,7 @@ public class HotelsDAO implements IHotelsDAO {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             return entityDAO.getHotelsList();
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
@@ -61,44 +62,50 @@ public class HotelsDAO implements IHotelsDAO {
     }
 
     @Override
-    public void insertHotels(HotelsModel entity) {
+    public boolean insertHotels(HotelsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.insertHotels(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void deleteHotels(HotelsModel entity) {
+    public boolean deleteHotels(HotelsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.deleteHotels(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 
     @Override
-    public void updateHotels(HotelsModel entity) {
+    public boolean updateHotels(HotelsModel entity) {
         try {
             session = MyBatisConfigUtil.getSqlSessionFactory().openSession();
             entityDAO = session.getMapper(DAOClass);
             entityDAO.updateHotels(entity);
             session.commit();
-        } catch (Exception e) {
+            return true;
+        } catch (PersistenceException e) {
             LOGGER.error(e);
         } finally {
             if(session != null) session.close();
         }
+        return false;
     }
 }

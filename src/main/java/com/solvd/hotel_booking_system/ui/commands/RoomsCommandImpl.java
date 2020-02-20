@@ -14,9 +14,11 @@ public class RoomsCommandImpl {
 
     private static final Logger LOGGER = LogManager.getLogger(RoomsCommandImpl.class);
 
-    public static void doCommand(String[] keys, ConsoleCommand command) {
+    public static void doCommand(String[] keys, ConsoleCommand command, Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
         RoomService roomService = new RoomService();
 
         RoomTypesModel roomType = new RoomTypesModel();
